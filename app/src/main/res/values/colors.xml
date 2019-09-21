@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ActionBar">#da344cd9</color>
+    <color name="BarraDeFerramentas">#3645a4</color>
+    <color name="AppThemeBlue">#52aaf7</color>
+    <color name="background">#e9e9e9</color>
+
+    <!--Esta cor é usada na maioria dos widgets-->
+    <color name="colorAccent">#0056a1</color>
+    <!--Esta cor é usada quando o botão muda seu estado-->
+    <color name="clearButton">#ff2020</color>
+</resources>

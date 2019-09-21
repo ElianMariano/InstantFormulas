@@ -1,0 +1,98 @@
+<resources>
+    <!--Título do app e da tela principal-->
+    <string name="app_name">Formulas</string>
+
+    <!--Descrições do app-->
+    <string name="SplashImg">Esta imagem é ícone do aplicativo.</string>
+
+    <!--Textos dos widgets-->
+    <string name="voltar">Tem certeza de que quer sair?</string>
+    <string name="inicio_text">Você não tem nenhuma atividade recente.</string>
+    <string name="favoritos_text">Você ainda não tem nenhum favorito.</string>
+    <string name="sempre_Calc">Sempre mostra a resolução das formulas</string>
+    <string name="camp_ico">Definir campo vazio como incógnita</string>
+    <string name="calc_config">Mostrar explicação do calculos</string>
+    <string name="not_config">Sempre enviar notificações</string>
+    <string name="ads_config">Mostrar anúncios</string>
+    <string name="mat">Matemática</string>
+    <string name="qui">Química</string>
+    <string name="Fis">Física</string>
+    <string name="font">Fonte</string>
+    <string name="back">Voltar</string>
+    <string name="Back_P">Você quer mesmo sair?</string>
+    <string name="Nao">Não</string>
+    <string name="Sim">Sim</string>
+    <!-- Texto calcular -->
+    <string name="Calc">Calcular</string>
+    <!-- Texto limpar -->
+    <string name="limpar">Limpar</string>
+    <string name="FavoriteToast_on">Favorito adicionado</string>
+    <string name="FavoriteToast_off">Favorito removido</string>
+    <string name="Recente_off">Item recente removido</string>
+    <string name="isEmpty">Existem campos vazios</string>
+    <string name="ok">OK</string>
+    <string name="preenchido">Todos os campos estão preenchidos</string>
+    <string name="dado_invalido">Dado inválido!</string>
+
+    <!--Guiascom.company.app.MainActivityvity-->
+    <string name="GuiaUM">Recentes</string>
+    <string name="GuiaDois">Favoritos</string>
+
+    <!--Títulos para a action bar-->
+    <string name="config">Configurações</string>
+    <string name="form">Formulas</string>
+
+    <!--Nome e descrições paracom.company.app.formulasulas-->
+    <!--MATEMÁTICA-->
+    <string name="regra_de_tres">Regra de tres</string>
+    <string name="regra_de_tresDes">Calculo para encontrar a incognita comparando tres valores.</string>
+    <string name="area_q">Área do retângulo</string>
+    <string name="area_qFor">a = b * h</string>
+    <string name="area_qDes">Calcula a área do quadrado ou retângulo.</string>
+    <string name="area_t">Área do triângulo retângulo</string>
+    <string name="area_tFor">a = b * h/2</string>
+    <string name="area_tDes">Calcula a área do triângulo.</string>
+    <string name="comp_circulo">Comprimento de um círculo</string>
+    <string name="comp_circuloFor">C = 2."π".r</string>
+    <string name="comp_circuloDes">Determina o comprimento de um círculo</string>
+    <string name="pitagoras">Teorema de pitágoras</string>
+    <string name="pitagorasFor">h"²" = c"²" + c"²"</string>
+    <string name="pitagorasDes">Calcula a hipotenusa de um triangulo</string>
+    <!--QUÍMICA-->
+    <string name="densidade">Densidade</string>
+    <string name="densidadeFor">d = m/v</string>
+    <string name="densideDes">Calcula a densidade de uma solução</string>
+    <string name="velocidade_media">Velocidade média de uma reação</string>
+    <string name="velocidade_mediaFor">Vm = Cf - Ci/tf - ti</string>
+    <string name="velocidade_mediaDes">Calcula a velocidade média de uma reação</string>
+    <string name="variacao_entalpia">Variação da entalpia</string>
+    <string name="variação_entalpiaFor">"Δ"H = Tf - Ti</string>
+    <string name="variacao_entalpiaDes">Calcula a variação da entalpia de uma reação</string>
+    <string name="energia_ativacao">Energia de ativação</string>
+    <string name="energia_ativacaoFor">Eat = Ep - Er</string>
+    <string name="energia_atvacaoDes">Calcula a energia de ativação de uma reação</string>
+    <!--FÍSICA-->
+    <string name="dilat_linear">Dilatação térmica linear</string>
+    <string name="dilat_linearFor">"Δ"L = Li."α"."Δ"T</string>
+    <string name="dilat_linearDes">Calcula a dilatação térmica linear</string>
+    <string name="velo_media">Velocidade média</string>
+    <string name="velo_mediaFor">V = "Δ"d / "Δ"t</string>
+    <string name="velo_mediaDes">Calcula a velocidade média de um corpo</string>
+    <string name="acel_media">Aceleração média</string>
+    <string name="acel_mediaFor">A = "Δ"v / "Δ"t</string>
+    <string name="acel_mediaDes">Calcula a aceleração média de um corpo</string>
+    <string name="equa_torricelli">Equação de Torricelli</string>
+    <string name="equa_torricelliFor">V² = Vo² + 2.a.Δd</string>
+    <string name="equa_torricelliDes">Calcula a velocidade de um corpo em M.R.U.</string>
+    <string name="equa_calorimetria">Equação fundamental da calorimetria</string>
+    <string name="equa_calorimetriaFor">Q = m.c."Δ"T</string>
+    <string name="equa_calorimetriaDes">Calcula a quantidade de calor sensível de um corpo</string>
+    <string name="clapeyron">Equação de clapeyron</string>
+    <string name="clapeyronFor">p.V = n.R.T</string>
+    <string name="clapeyronDes">Relaciona características de gases como volume e pressâo</string>
+
+    <!-- Nomes usados nas formulas -->
+    <string name="area">Área</string>
+    <string name="base">Base</string>
+    <string name="altura">Altura</string>
+</resources>

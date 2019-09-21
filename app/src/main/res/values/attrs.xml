@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CheckAttrs">
+        <attr name="width" format="dimension"></attr>
+        <attr name="height" format="dimension"></attr>
+        <attr name="TitleEx" format="string"></attr>
+        <attr name="Formula" format="string"></attr>
+        <attr name="Description" format="string"></attr>
+    </declare-styleable>
+</resources>

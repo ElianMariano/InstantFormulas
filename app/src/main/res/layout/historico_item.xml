@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_margin="5dp"
+    android:orientation="vertical"
+    android:weightSum="5">
+
+    <Button
+        android:id="@+id/historico_b"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:textAllCaps="false"
+        android:textSize="18sp" />
+</LinearLayout>

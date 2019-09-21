@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Formulas</string>
+    <string name="SplashImg">This image is the icon of the application.</string>
+    <string name="voltar">Are you sure you want to exit?</string>
+    <string name="inicio_text">You do not have a recent activity.</string>
+    <string name="favoritos_text">You still do not have any favorites.</string>
+    <string name="sempre_Calc">Ever show the way the calculus was done</string>
+    <string name="camp_ico">Set the empty field to be unknown number.</string>
+    <string name="ads_config">Show ads</string>
+    <string name="mat">Mathematics</string>
+    <string name="qui">Chemistry</string>
+    <string name="Fis">Phisics</string>
+    <string name="font">Font</string>
+    <string name="back">Back</string>
+    <string name="Back_P">Do you really want to exit?</string>
+    <string name="Nao">No</string>
+    <string name="Sim">Yes</string>
+    <string name="Calc">Calculate</string>
+    <string name="limpar">Clean</string>
+    <string name="FavoriteToast_on">Favorite added</string>
+    <string name="FavoriteToast_off">Favorite removed</string>
+    <string name="isEmpty">There are empty fields</string>
+    <string name="ok">OK</string>
+    <string name="GuiaUM">Recents</string>
+    <string name="GuiaDois">Favorites</string>
+    <string name="config">Settings</string>
+    <string name="form">Formulas</string>
+    <string name="area">Area</string>
+    <string name="base">Base</string>
+    <string name="altura">Height</string>
+    <string name="area_q">Rect\'s area</string>
+    <string name="comp_circulo">Circle\'s length</string>
+    <string name="densidade">Density</string>
+    <string name="preenchido">All fields are filled</string>
+    <string name="clapeyron">Clapeyron\'s equation</string>
+    <string name="equa_calorimetria">Calorimetry\'s fundamental equations</string>
+    <string name="densideDes">Calculates the density of the solution</string>
+    <string name="densidadeFor">d = m/v</string>
+    <string name="pitagorasFor">h² = c² + c²</string>
+    <string name="comp_circuloFor">C = 2.π.r</string>
+    <string name="comp_circuloDes">Find the length of a circle</string>
+    <string name="area_tDes">Calculates the triangle area</string>
+    <string name="area_qFor">a = b * h</string>
+    <string name="area_tFor">a = b * h/2</string>
+    <string name="velocidade_mediaFor">Vm = Cf - Ci/tf - ti</string>
+    <string name="variação_entalpiaFor">ΔH = Tf - Ti</string>
+    <string name="energia_ativacaoFor">Eat = Ep - Er</string>
+    <string name="dilat_linearFor">ΔL = Li.α.ΔT</string>
+    <string name="calc_config">Show the explaining</string>
+    <string name="not_config">Ever send notifications</string>
+    <string name="regra_de_tresDes">Equation to find the missed number comparing three values.</string>
+    <string name="area_qDes">Calculates the area of a square or rect.</string>
+    <string name="clapeyronDes">Relates characteristics from gases like voume and pressure</string>
+    <string name="acel_mediaFor">A = Δv / Δt</string>
+    <string name="velo_mediaFor">V = Δd / Δt</string>
+    <string name="equa_calorimetriaFor">Q = m.c.ΔT</string>
+    <string name="clapeyronFor">p.V = n.R.T</string>
+    <string name="velo_mediaDes">Calculates the average speed of a physic body</string>
+    <string name="velo_media">Average speed</string>
+    <string name="equa_torricelliFor">V² = Vo² + 2.a.Δd</string>
+    <string name="equa_torricelliDes">Calculates the velocity of some body in movement</string>
+    <string name="acel_mediaDes">Calculates the average aceleration of a body</string>
+    <string name="acel_media">Average aceleration</string>
+</resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="false"
+    android:layout_centerVertical="false"
+    android:layout_gravity="center"
+    android:background="@color/AppThemeBlue"
+    android:gravity="center"
+    tools:context="com.example.company.formulas.SplashActivity">
+
+    <ImageView
+        android:id="@+id/SplashImg"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/SplashImg"
+        app:srcCompat="@drawable/splash"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="66dp" />
+</RelativeLayout>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.company.formulas.configuracoes">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/txt_form"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/form"
+                android:textAlignment="viewStart"
+                tools:text="@string/form" />
+
+            <CheckBox
+                android:id="@+id/smpre_calc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sempre_Calc" />
+
+            <CheckBox
+                android:id="@+id/camp_inco"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/camp_ico" />
+
+            <CheckBox
+                android:id="@+id/calc_config"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/calc_config" />
+
+            <TextView
+                android:id="@+id/font_config"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/font" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Idioma" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Notificações" />
+
+            <CheckBox
+                android:id="@+id/not_config"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/not_config" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Anúcios" />
+
+            <CheckBox
+                android:id="@+id/adds_config"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ads_config" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
