@@ -3,7 +3,7 @@
 ### Descrição ###
 
 Aplicativo que resolve formulas matemáticas, químicas e físicas.
-Cada fómula fórmula é resolvida de maneira que a incógnita seja encontrada, portanto um problema pode ser resolvido de várias maneiras diferentes por uma mesma fórmula.
+Cada fómula é resolvida de maneira que a incógnita seja encontrada, portanto um problema pode ser resolvido de várias maneiras diferentes por uma mesma fórmula.
 
 ### Imagens do Aplicativo ###
 
