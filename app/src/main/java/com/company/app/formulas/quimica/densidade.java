@@ -1,5 +1,6 @@
 package com.company.app.formulas.quimica;
 
+import android.content.ContentValues;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,8 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.company.app.ConvertStringtoData;
 import com.company.app.ItensLibrary.EmptyFragment;
 import com.company.app.ItensLibrary.TudoPreenchido;
+import com.company.app.Models.HistoricoHelper;
 import com.example.company.formulas.R;
 
 import static android.view.View.GONE;
@@ -25,6 +28,7 @@ public class densidade extends AppCompatActivity {
     private TextView line4;
     // Variável que define o estado da formula
     private boolean isDone;
+    private boolean hasIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,17 +36,20 @@ public class densidade extends AppCompatActivity {
         setContentView(R.layout.activity_densidade);
 
         // Referencia os itens utilizados
-        densidade = (EditText) findViewById(R.id.densidade);
-        massa = (EditText) findViewById(R.id.massa);
-        volume = (EditText) findViewById(R.id.volume);
-        calcular = (Button) findViewById(R.id.calcular);
-        line1 = (TextView) findViewById(R.id.line1);
-        line2 = (TextView) findViewById(R.id.line2);
-        line3 = (TextView) findViewById(R.id.line3);
-        line4 = (TextView) findViewById(R.id.line4);
+        densidade = findViewById(R.id.densidade);
+        massa = findViewById(R.id.massa);
+        volume = findViewById(R.id.volume);
+        calcular = findViewById(R.id.calcular);
+        line1 = findViewById(R.id.line1);
+        line2 = findViewById(R.id.line2);
+        line3 = findViewById(R.id.line3);
+        line4 = findViewById(R.id.line4);
 
         // Define o valor de isDone para false
         isDone = false;
+
+        // Define hasIntent como false
+        hasIntent = false;
 
         // Define um listener para o botão calcular
         calcular.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +101,26 @@ public class densidade extends AppCompatActivity {
                 // Define o estilo do botão
                 calcular.setBackgroundColor(ContextCompat.getColor(this, R.color.clearButton));
                 calcular.setText(R.string.limpar);
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] dn = new Double[3];
+                    dn[0] = null;
+                    dn[1] = d_massa;
+                    dn[2] = d_volume;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(dn);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.densidade));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if (d_densidade != null && d_massa == null && d_volume != null){
                 // Define isDone como true
@@ -111,6 +138,26 @@ public class densidade extends AppCompatActivity {
                 // Define o estilo do botão
                 calcular.setBackgroundColor(ContextCompat.getColor(this, R.color.clearButton));
                 calcular.setText(R.string.limpar);
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] dn = new Double[3];
+                    dn[0] = d_densidade;
+                    dn[1] = null;
+                    dn[2] = d_volume;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(dn);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.densidade));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if (d_densidade != null && d_massa != null && d_volume == null){
                 // Define isDone como true
@@ -130,6 +177,26 @@ public class densidade extends AppCompatActivity {
                 // Define o estilo do botão
                 calcular.setBackgroundColor(ContextCompat.getColor(this, R.color.clearButton));
                 calcular.setText(R.string.limpar);
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] dn = new Double[3];
+                    dn[0] = d_densidade;
+                    dn[1] = d_massa;
+                    dn[2] = null;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(dn);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.area_q));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if (d_densidade != null && d_massa != null && d_volume != null){
                 TudoPreenchido td = new TudoPreenchido();

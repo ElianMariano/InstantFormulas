@@ -1,5 +1,6 @@
 package com.company.app.formulas.quimica;
 
+import android.content.ContentValues;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,8 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.company.app.ConvertStringtoData;
 import com.company.app.ItensLibrary.EmptyFragment;
 import com.company.app.ItensLibrary.TudoPreenchido;
+import com.company.app.Models.HistoricoHelper;
 import com.example.company.formulas.R;
 
 import static android.view.View.GONE;
@@ -25,6 +28,7 @@ public class energia_ativacao extends AppCompatActivity {
     private Button calcular;
     // Variável que define se o calculo foi feito
     private boolean isDone;
+    private boolean hasIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,16 +36,19 @@ public class energia_ativacao extends AppCompatActivity {
         setContentView(R.layout.activity_energia_ativacao);
 
         // Referencia os itens utilizados na activity
-        eat = (EditText) findViewById(R.id.eat);
-        ep = (EditText) findViewById(R.id.ep);
-        er = (EditText) findViewById(R.id.er);
-        line = (TextView) findViewById(R.id.line);
-        line2 = (TextView) findViewById(R.id.line2);
-        line3 = (TextView) findViewById(R.id.line3);
-        calcular = (Button) findViewById(R.id.calcular);
+        eat = findViewById(R.id.eat);
+        ep = findViewById(R.id.ep);
+        er = findViewById(R.id.er);
+        line = findViewById(R.id.line);
+        line2 = findViewById(R.id.line2);
+        line3 = findViewById(R.id.line3);
+        calcular = findViewById(R.id.calcular);
 
         // Define o valor de isDone
         isDone = false;
+
+        // Define hasIntent como false
+        hasIntent = false;
 
         // Cria um listener para o botão calcular
         calcular.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +98,28 @@ public class energia_ativacao extends AppCompatActivity {
 
                 // Define o estilo do botão calcular
                 calcular.setText(R.string.limpar);
-                calcular.setBackgroundColor(ContextCompat.getColor(this, R.color.clearButton));
+                calcular.setBackgroundColor(ContextCompat.getColor(this,
+                        R.color.clearButton));
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] dn = new Double[3];
+                    dn[0] = null;
+                    dn[1] = dep;
+                    dn[2] = der;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(dn);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.energia_ativacao));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if (deat != null && dep == null && der != null){
                 // Define o valor de isDone como true
@@ -108,7 +136,28 @@ public class energia_ativacao extends AppCompatActivity {
 
                 // Define o estilo do botão calcular
                 calcular.setText(R.string.limpar);
-                calcular.setBackgroundColor(ContextCompat.getColor(this, R.color.clearButton));
+                calcular.setBackgroundColor(ContextCompat.getColor(this,
+                        R.color.clearButton));
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] dn = new Double[3];
+                    dn[0] = deat;
+                    dn[1] = null;
+                    dn[2] = der;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(dn);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.energia_ativacao));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if (deat != null && dep != null && der == null){
                 // Define o valor de isDone como true
@@ -125,7 +174,28 @@ public class energia_ativacao extends AppCompatActivity {
 
                 // Define o estilo do botão calcular
                 calcular.setText(R.string.limpar);
-                calcular.setBackgroundColor(ContextCompat.getColor(this, R.color.clearButton));
+                calcular.setBackgroundColor(ContextCompat.getColor(this,
+                        R.color.clearButton));
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] dn = new Double[3];
+                    dn[0] = deat;
+                    dn[1] = dep;
+                    dn[2] = null;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(dn);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.area_q));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if (deat != null && dep != null && der != null){
                 TudoPreenchido td = new TudoPreenchido();

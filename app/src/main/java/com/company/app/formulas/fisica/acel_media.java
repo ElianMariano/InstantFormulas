@@ -1,5 +1,6 @@
 package com.company.app.formulas.fisica;
 
+import android.content.ContentValues;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,8 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.company.app.ConvertStringtoData;
 import com.company.app.ItensLibrary.EmptyFragment;
 import com.company.app.ItensLibrary.TudoPreenchido;
+import com.company.app.Models.HistoricoHelper;
 import com.example.company.formulas.R;
 
 import static android.view.View.GONE;
@@ -26,6 +29,7 @@ public class acel_media extends AppCompatActivity {
     private TextView line4;
     // Define se o calculo foi feito
     private boolean isDone;
+    private boolean hasIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,9 @@ public class acel_media extends AppCompatActivity {
 
         // Define o valor de isDone
         isDone = false;
+
+        // Define hasIntent como false
+        hasIntent = false;
 
         // Cria um listener para o botão calcular
         calcular.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +106,26 @@ public class acel_media extends AppCompatActivity {
                 // Define o estilo do botão calcuar
                 calcular.setBackgroundColor(ContextCompat.getColor(this, R.color.clearButton));
                 calcular.setText(R.string.limpar);
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] dn = new Double[3];
+                    dn[0] = null;
+                    dn[1] = velo;
+                    dn[2] = tem;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(dn);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.acel_media));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if (ace != null && velo == null && tem != null){
                 // Define isDone para true
@@ -117,6 +144,26 @@ public class acel_media extends AppCompatActivity {
                 // Define o estilo do botão calcuar
                 calcular.setBackgroundColor(ContextCompat.getColor(this, R.color.clearButton));
                 calcular.setText(R.string.limpar);
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] dn = new Double[3];
+                    dn[0] = ace;
+                    dn[1] = null;
+                    dn[2] = tem;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(dn);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.acel_media));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if (ace != null && velo != null && tem == null){
                 // Define isDone para true
@@ -137,6 +184,26 @@ public class acel_media extends AppCompatActivity {
                 // Define o estilo do botão calcuar
                 calcular.setBackgroundColor(ContextCompat.getColor(this, R.color.clearButton));
                 calcular.setText(R.string.limpar);
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] dn = new Double[3];
+                    dn[0] = ace;
+                    dn[1] = velo;
+                    dn[2] = null;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(dn);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.acel_media));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if (ace != null && velo != null && tem != null){
                 TudoPreenchido td = new TudoPreenchido();

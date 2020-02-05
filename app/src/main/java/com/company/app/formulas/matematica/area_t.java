@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.company.app.ConvertStringtoData;
-import com.company.app.HistoricoHelper;
+import com.company.app.Models.HistoricoHelper;
 import com.company.app.ItensLibrary.EmptyFragment;
 import com.company.app.ItensLibrary.TudoPreenchido;
 import com.example.company.formulas.R;
@@ -166,7 +166,7 @@ public class area_t extends AppCompatActivity {
 
                 // Cria um ContentValues
                 ContentValues cv = new ContentValues();
-                cv.put("titulo", R.string.area_t);
+                cv.put("titulo", getResources().getString(R.string.area_t));
                 cv.put("data", data);
 
                 // Cria uma intância do banco de dados
@@ -211,7 +211,7 @@ public class area_t extends AppCompatActivity {
 
                 // Cria um ContentValues
                 ContentValues cv = new ContentValues();
-                cv.put("titulo", R.string.area_t);
+                cv.put("titulo", getResources().getString(R.string.area_t));
                 cv.put("data", data);
 
                 // Cria uma intância do banco de dados
@@ -256,7 +256,7 @@ public class area_t extends AppCompatActivity {
 
                 // Cria um ContentValues
                 ContentValues cv = new ContentValues();
-                cv.put("titulo", R.string.area_t);
+                cv.put("titulo", getResources().getString(R.string.area_t));
                 cv.put("data", data);
 
                 // Cria uma intância do banco de dados

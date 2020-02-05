@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.company.app.ConvertStringtoData;
-import com.company.app.HistoricoHelper;
+import com.company.app.Models.HistoricoHelper;
 import com.company.app.ItensLibrary.EmptyFragment;
 import com.example.company.formulas.R;
 import com.company.app.form_choose;

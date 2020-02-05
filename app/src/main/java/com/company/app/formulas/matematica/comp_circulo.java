@@ -1,5 +1,6 @@
 package com.company.app.formulas.matematica;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -9,8 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.company.app.ConvertStringtoData;
 import com.company.app.ItensLibrary.EmptyFragment;
 import com.company.app.ItensLibrary.TudoPreenchido;
+import com.company.app.Models.HistoricoHelper;
 import com.company.app.form_choose;
 import com.example.company.formulas.R;
 
@@ -28,6 +31,7 @@ public class comp_circulo extends AppCompatActivity {
     private boolean isDone;
     // Valor de pi utilizado na formula
     private final Double PI = 3.14;
+    private boolean hasIntent;
 
     // TODO Consertar o erro ao calcular o raio do circulo
 
@@ -44,6 +48,9 @@ public class comp_circulo extends AppCompatActivity {
         line2 = (TextView) findViewById(R.id.line2);
         line3 = (TextView) findViewById(R.id.line3);
         calcular = (Button) findViewById(R.id.calcular);
+
+        // Define hasIntent como false
+        hasIntent = false;
 
         // Define o valor de isDone como false
         isDone = false;
@@ -75,8 +82,7 @@ public class comp_circulo extends AppCompatActivity {
             Dnum2 = null;
         }
 
-        if((Dnum1 == null && Dnum2 != null) && isDone == false){
-            // Erro
+        if((Dnum1 == null && Dnum2 != null) && !isDone){
             // Define o valor de isDone
             isDone = true;
 
@@ -93,6 +99,25 @@ public class comp_circulo extends AppCompatActivity {
             // Define o estilo do botão
             calcular.setBackgroundColor(ContextCompat.getColor(this, R.color.clearButton));
             calcular.setText(R.string.limpar);
+
+            if (!hasIntent){
+                // Variáveis que obtem os dados
+                Double[] dn = new Double[3];
+                dn[0] = null;
+                dn[1] = Dnum2;
+
+                // String que armazena o dado convertido
+                String data = ConvertStringtoData.DataToString(dn);
+
+                // Cria um ContentValues
+                ContentValues cv = new ContentValues();
+                cv.put("titulo", getResources().getString(R.string.comp_circulo));
+                cv.put("data", data);
+
+                // Cria uma instância do banco de dados
+                HistoricoHelper hh = new HistoricoHelper(this);
+                hh.inserir(cv);
+            }
         }
         else if ((Dnum1 != null && Dnum2 == null) && isDone == false){
             // Define o valor de isDone
@@ -111,6 +136,25 @@ public class comp_circulo extends AppCompatActivity {
             // Define o estilo do botão
             calcular.setBackgroundColor(ContextCompat.getColor(this, R.color.clearButton));
             calcular.setText(R.string.limpar);
+
+            if (!hasIntent){
+                // Variáveis que obtem os dados
+                Double[] dn = new Double[3];
+                dn[0] = null;
+                dn[1] = Dnum2;
+
+                // String que armazena o dado convertido
+                String data = ConvertStringtoData.DataToString(dn);
+
+                // Cria um ContentValues
+                ContentValues cv = new ContentValues();
+                cv.put("titulo", getResources().getString(R.string.comp_circulo));
+                cv.put("data", data);
+
+                // Cria uma instância do banco de dados
+                HistoricoHelper hh = new HistoricoHelper(this);
+                hh.inserir(cv);
+            }
         }
         else if (isDone){
             // Define o valor de isDone

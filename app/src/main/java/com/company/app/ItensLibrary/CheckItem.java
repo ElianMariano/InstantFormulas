@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.company.app.FavoritesHelper;
+import com.company.app.Models.FavoritesHelper;
 import com.company.app.Formulas;
 import com.company.app.StartFormula;
 import com.example.company.formulas.R;

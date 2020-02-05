@@ -1,30 +1,18 @@
 package com.company.app.ItensLibrary;
 
 import android.annotation.SuppressLint;
-import android.content.ClipData;
-import android.content.Context;
-import android.content.Intent;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.MotionEventCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
-import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
-import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ViewAnimator;
 
-import com.company.app.FavoritesHelper;
+import com.company.app.Models.FavoritesHelper;
 import com.company.app.StartFormulaByString;
 import com.example.company.formulas.R;
 

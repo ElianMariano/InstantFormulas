@@ -1,5 +1,6 @@
 package com.company.app.formulas.quimica;
 
+import android.content.ContentValues;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,8 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.company.app.ConvertStringtoData;
 import com.company.app.ItensLibrary.EmptyFragment;
 import com.company.app.ItensLibrary.TudoPreenchido;
+import com.company.app.Models.HistoricoHelper;
 import com.example.company.formulas.R;
 
 import org.w3c.dom.Text;
@@ -34,6 +37,7 @@ public class velocidade_media extends AppCompatActivity {
     private Button calcular;
     // Variável que define se a formula foi calculada
     private boolean isDone;
+    private boolean hasIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,23 +45,26 @@ public class velocidade_media extends AppCompatActivity {
         setContentView(R.layout.activity_velocidade_media);
 
         // Referencia os itens utilizados na activity
-        vm = (EditText) findViewById(R.id.vm);
-        cf = (EditText) findViewById(R.id.cf);
-        ci = (EditText) findViewById(R.id.ci);
-        tf = (EditText) findViewById(R.id.tf);
-        ti = (EditText) findViewById(R.id.ti);
-        line = (TextView) findViewById(R.id.line);
-        line2 = (TextView) findViewById(R.id.line2);
-        line3 = (TextView) findViewById(R.id.line3);
-        line4 = (TextView) findViewById(R.id.line4);
-        line5 = (TextView) findViewById(R.id.line5);
-        line6 = (TextView) findViewById(R.id.line6);
-        line7 = (TextView) findViewById(R.id.line7);
-        line8 = (TextView) findViewById(R.id.line8);
-        calcular = (Button) findViewById(R.id.calcular);
+        vm = findViewById(R.id.vm);
+        cf = findViewById(R.id.cf);
+        ci = findViewById(R.id.ci);
+        tf = findViewById(R.id.tf);
+        ti = findViewById(R.id.ti);
+        line = findViewById(R.id.line);
+        line2 = findViewById(R.id.line2);
+        line3 = findViewById(R.id.line3);
+        line4 = findViewById(R.id.line4);
+        line5 = findViewById(R.id.line5);
+        line6 = findViewById(R.id.line6);
+        line7 = findViewById(R.id.line7);
+        line8 = findViewById(R.id.line8);
+        calcular = findViewById(R.id.calcular);
 
         // Define o valor inicial de isDone
         isDone = false;
+
+        // Define hasIntent como false
+        hasIntent = false;
 
         // Cria um listenner para o botão calcular
         calcular.setOnClickListener(new View.OnClickListener() {
@@ -128,6 +135,28 @@ public class velocidade_media extends AppCompatActivity {
                 calcular.setText(R.string.limpar);
                 calcular.setBackgroundColor(ContextCompat.getColor(this,
                         R.color.clearButton));
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] dn = new Double[5];
+                    dn[0] = null;
+                    dn[1] = d_cf;
+                    dn[2] = d_ci;
+                    dn[3] = d_tf;
+                    dn[4] = d_ti;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(dn);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.velocidade_media));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if (d_vm != null && d_cf == null && d_ci != null && d_tf != null && d_ti != null){
                 // Define o valor de isDone como true
@@ -158,6 +187,28 @@ public class velocidade_media extends AppCompatActivity {
                 calcular.setText(R.string.limpar);
                 calcular.setBackgroundColor(ContextCompat.getColor(this,
                         R.color.clearButton));
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] dn = new Double[5];
+                    dn[0] = d_vm;
+                    dn[1] = null;
+                    dn[2] = d_ci;
+                    dn[3] = d_tf;
+                    dn[4] = d_ti;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(dn);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.velocidade_media));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if (d_vm != null && d_cf != null && d_ci == null && d_tf != null && d_ti != null){
                 // Define o valor de isDone como true
@@ -187,6 +238,28 @@ public class velocidade_media extends AppCompatActivity {
                 calcular.setText(R.string.limpar);
                 calcular.setBackgroundColor(ContextCompat.getColor(this,
                         R.color.clearButton));
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] dn = new Double[5];
+                    dn[0] = d_vm;
+                    dn[1] = d_cf;
+                    dn[2] = null;
+                    dn[3] = d_tf;
+                    dn[4] = d_ti;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(dn);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.velocidade_media));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if (d_vm != null && d_cf != null && d_ci != null && d_tf == null && d_ti != null){
                 // Define o valor de isDone como true
@@ -223,6 +296,28 @@ public class velocidade_media extends AppCompatActivity {
                 calcular.setText(R.string.limpar);
                 calcular.setBackgroundColor(ContextCompat.getColor(this,
                         R.color.clearButton));
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] dn = new Double[5];
+                    dn[0] = d_vm;
+                    dn[1] = d_cf;
+                    dn[2] = d_ci;
+                    dn[3] = null;
+                    dn[4] = d_ti;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(dn);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.velocidade_media));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if (d_vm != null && d_cf != null && d_ci != null && d_tf != null && d_ti == null){
                 // Define o valor de isDone como true
@@ -263,6 +358,28 @@ public class velocidade_media extends AppCompatActivity {
                 calcular.setText(R.string.limpar);
                 calcular.setBackgroundColor(ContextCompat.getColor(this,
                         R.color.clearButton));
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] dn = new Double[5];
+                    dn[0] = d_vm;
+                    dn[1] = d_cf;
+                    dn[2] = d_ci;
+                    dn[3] = d_tf;
+                    dn[4] = null;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(dn);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.velocidade_media));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if (d_vm != null && d_cf != null && d_ci != null && d_tf != null && d_ti != null){
                 TudoPreenchido td = new TudoPreenchido();

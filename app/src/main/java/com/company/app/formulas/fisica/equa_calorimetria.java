@@ -1,5 +1,6 @@
 package com.company.app.formulas.fisica;
 
+import android.content.ContentValues;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,8 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.company.app.ConvertStringtoData;
 import com.company.app.ItensLibrary.EmptyFragment;
 import com.company.app.ItensLibrary.TudoPreenchido;
+import com.company.app.Models.HistoricoHelper;
 import com.example.company.formulas.R;
 
 import static android.view.View.GONE;
@@ -28,24 +31,28 @@ public class equa_calorimetria extends AppCompatActivity {
     private TextView line4;
     private boolean isDone;
     private Button calcular;
+    private boolean hasIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_equa_calorimetria);
 
-        q = (EditText) findViewById(R.id.q);
-        m = (EditText) findViewById(R.id.m);
-        c = (EditText) findViewById(R.id.c);
-        t = (EditText) findViewById(R.id.t);
-        line = (TextView) findViewById(R.id.line);
-        line2 = (TextView) findViewById(R.id.line2);
-        line3 = (TextView) findViewById(R.id.line3);
-        line4 = (TextView) findViewById(R.id.line4);
-        calcular = (Button) findViewById(R.id.calcular);
+        q = findViewById(R.id.q);
+        m = findViewById(R.id.m);
+        c = findViewById(R.id.c);
+        t = findViewById(R.id.t);
+        line = findViewById(R.id.line);
+        line2 = findViewById(R.id.line2);
+        line3 = findViewById(R.id.line3);
+        line4 = findViewById(R.id.line4);
+        calcular = findViewById(R.id.calcular);
 
         // Define o valor de isDone
         isDone = false;
+
+        // Define hasIntent como false
+        hasIntent = false;
 
         calcular.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +112,27 @@ public class equa_calorimetria extends AppCompatActivity {
                 calcular.setText(R.string.limpar);
                 calcular.setBackgroundColor(ContextCompat.getColor(this,
                         R.color.clearButton));
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] dn = new Double[4];
+                    dn[0] = null;
+                    dn[1] = dm;
+                    dn[2] = dc;
+                    dn[3] = dt;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(dn);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.equa_calorimetria));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if(dq != null && dm == null && dc != null && dt != null){
                 // Define o valor de isDone como true
@@ -126,6 +154,27 @@ public class equa_calorimetria extends AppCompatActivity {
                 calcular.setText(R.string.limpar);
                 calcular.setBackgroundColor(ContextCompat.getColor(this,
                         R.color.clearButton));
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] dn = new Double[4];
+                    dn[0] = dq;
+                    dn[1] = null;
+                    dn[2] = dc;
+                    dn[3] = dt;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(dn);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.equa_calorimetria));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if(dq != null && dm != null && dc == null && dt != null){
                 // Define o valor de isDone como true
@@ -147,6 +196,27 @@ public class equa_calorimetria extends AppCompatActivity {
                 calcular.setText(R.string.limpar);
                 calcular.setBackgroundColor(ContextCompat.getColor(this,
                         R.color.clearButton));
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] dn = new Double[4];
+                    dn[0] = dq;
+                    dn[1] = dm;
+                    dn[2] = null;
+                    dn[3] = dt;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(dn);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.equa_calorimetria));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if(dq != null && dm != null && dc != null && dt == null){
                 // Define o valor de isDone como true
@@ -168,6 +238,27 @@ public class equa_calorimetria extends AppCompatActivity {
                 calcular.setText(R.string.limpar);
                 calcular.setBackgroundColor(ContextCompat.getColor(this,
                         R.color.clearButton));
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] dn = new Double[4];
+                    dn[0] = dq;
+                    dn[1] = dm;
+                    dn[2] = dc;
+                    dn[3] = null;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(dn);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.equa_calorimetria));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if (dq != null && dm != null && dc != null && dt != null){
                 TudoPreenchido td = new TudoPreenchido();

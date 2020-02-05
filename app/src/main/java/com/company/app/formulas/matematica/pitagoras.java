@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.lang.Math;
 
 import com.company.app.ConvertStringtoData;
-import com.company.app.HistoricoHelper;
+import com.company.app.Models.HistoricoHelper;
 import com.company.app.ItensLibrary.EmptyFragment;
 import com.company.app.ItensLibrary.IvalidDataFragment;
 import com.company.app.ItensLibrary.TudoPreenchido;

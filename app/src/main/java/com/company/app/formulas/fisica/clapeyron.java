@@ -1,5 +1,6 @@
 package com.company.app.formulas.fisica;
 
+import android.content.ContentValues;
 import android.preference.EditTextPreference;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -9,8 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.company.app.ConvertStringtoData;
 import com.company.app.ItensLibrary.EmptyFragment;
 import com.company.app.ItensLibrary.TudoPreenchido;
+import com.company.app.Models.HistoricoHelper;
 import com.example.company.formulas.R;
 
 import static android.view.View.GONE;
@@ -29,6 +32,7 @@ public class clapeyron extends AppCompatActivity {
     private TextView line5;
     private Button calcular;
     private boolean isDone;
+    private boolean hasIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,20 +40,23 @@ public class clapeyron extends AppCompatActivity {
         setContentView(R.layout.activity_clapeyron);
 
         // Declara as variáveis e referencia os itens
-        p = (EditText) findViewById(R.id.p);
-        V = (EditText) findViewById(R.id.V);
-        n = (EditText) findViewById(R.id.n);
-        r = (EditText) findViewById(R.id.r);
-        T = (EditText) findViewById(R.id.T);
-        line1 = (TextView) findViewById(R.id.line1);
-        line2 = (TextView) findViewById(R.id.line2);
-        line3 = (TextView) findViewById(R.id.line3);
-        line4 = (TextView) findViewById(R.id.line4);
-        line5 = (TextView) findViewById(R.id.line5);
-        calcular = (Button) findViewById(R.id.calcular);
+        p = findViewById(R.id.p);
+        V = findViewById(R.id.V);
+        n = findViewById(R.id.n);
+        r = findViewById(R.id.r);
+        T = findViewById(R.id.T);
+        line1 = findViewById(R.id.line1);
+        line2 = findViewById(R.id.line2);
+        line3 = findViewById(R.id.line3);
+        line4 = findViewById(R.id.line4);
+        line5 = findViewById(R.id.line5);
+        calcular = findViewById(R.id.calcular);
 
         // Define o valor de isDone como false
         isDone = false;
+
+        // Define hasIntent como false
+        hasIntent = false;
 
         // Cria um listener para o botão calcular
         calcular.setOnClickListener(new View.OnClickListener() {
@@ -128,6 +135,28 @@ public class clapeyron extends AppCompatActivity {
                 calcular.setBackgroundColor(ContextCompat.getColor(this,
                         R.color.clearButton));
                 calcular.setText(R.string.limpar);
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] ddata = new Double[5];
+                    ddata[0] = null;
+                    ddata[1] = dv;
+                    ddata[2] = dn;
+                    ddata[3] = dr;
+                    ddata[4] = dt;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(ddata);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.clapeyron));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if (dp != null && dv == null && dn != null && dr != null && dt != null){
                 // Define a visibilidade das linhas
@@ -149,6 +178,28 @@ public class clapeyron extends AppCompatActivity {
                 calcular.setBackgroundColor(ContextCompat.getColor(this,
                         R.color.clearButton));
                 calcular.setText(R.string.limpar);
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] ddata = new Double[5];
+                    ddata[0] = dp;
+                    ddata[1] = null;
+                    ddata[2] = dn;
+                    ddata[3] = dr;
+                    ddata[4] = dt;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(ddata);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.clapeyron));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if (dp != null && dv != null && dn == null && dr != null && dt != null){
                 // Define a visibilidade das linhas
@@ -172,6 +223,28 @@ public class clapeyron extends AppCompatActivity {
                 calcular.setBackgroundColor(ContextCompat.getColor(this,
                         R.color.clearButton));
                 calcular.setText(R.string.limpar);
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] ddata = new Double[5];
+                    ddata[0] = dp;
+                    ddata[1] = dv;
+                    ddata[2] = null;
+                    ddata[3] = dr;
+                    ddata[4] = dt;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(ddata);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.clapeyron));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if (dp != null && dv != null && dn != null && dr == null && dt != null){
                 // Define a visibilidade das linhas
@@ -195,6 +268,28 @@ public class clapeyron extends AppCompatActivity {
                 calcular.setBackgroundColor(ContextCompat.getColor(this,
                         R.color.clearButton));
                 calcular.setText(R.string.limpar);
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] ddata = new Double[5];
+                    ddata[0] = dp;
+                    ddata[1] = dv;
+                    ddata[2] = dn;
+                    ddata[3] = null;
+                    ddata[4] = dt;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(ddata);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.clapeyron));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if (dp != null && dv != null && dn != null && dr != null && dt == null){
                 // Define a visibilidade das linhas
@@ -218,6 +313,28 @@ public class clapeyron extends AppCompatActivity {
                 calcular.setBackgroundColor(ContextCompat.getColor(this,
                         R.color.clearButton));
                 calcular.setText(R.string.limpar);
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] ddata = new Double[5];
+                    ddata[0] = dp;
+                    ddata[1] = dv;
+                    ddata[2] = dn;
+                    ddata[3] = dr;
+                    ddata[4] = null;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(ddata);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.clapeyron));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if (dp == null && dv == null && dn == null && dr == null && dt == null){
                 TudoPreenchido td = new TudoPreenchido();

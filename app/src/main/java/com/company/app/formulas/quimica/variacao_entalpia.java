@@ -1,5 +1,6 @@
 package com.company.app.formulas.quimica;
 
+import android.content.ContentValues;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,11 +9,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.company.app.ConvertStringtoData;
 import com.company.app.ItensLibrary.EmptyFragment;
 import com.company.app.ItensLibrary.TudoPreenchido;
+import com.company.app.Models.HistoricoHelper;
 import com.example.company.formulas.R;
 
 import static android.view.View.GONE;
+
+// TODO Resolver bug do botão limpar
 
 public class variacao_entalpia extends AppCompatActivity {
     // Declara os itens
@@ -24,6 +29,7 @@ public class variacao_entalpia extends AppCompatActivity {
     private TextView line2;
     private TextView line3;
     private boolean isDone;
+    private boolean hasIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,16 +37,19 @@ public class variacao_entalpia extends AppCompatActivity {
         setContentView(R.layout.activity_variacao_entalpia);
 
         // Referencia os itens utilizados na activity
-        variacao = (EditText) findViewById(R.id.variacao);
-        tf = (EditText) findViewById(R.id.tf);
-        ti = (EditText) findViewById(R.id.ti);
-        calcular = (Button) findViewById(R.id.calcular);
-        line1 = (TextView) findViewById(R.id.line1);
-        line2 = (TextView) findViewById(R.id.line2);
-        line3 = (TextView) findViewById(R.id.line3);
+        variacao = findViewById(R.id.variacao);
+        tf = findViewById(R.id.tf);
+        ti = findViewById(R.id.ti);
+        calcular = findViewById(R.id.calcular);
+        line1 = findViewById(R.id.line1);
+        line2 = findViewById(R.id.line2);
+        line3 = findViewById(R.id.line3);
 
         // Define isDone como false
         isDone = false;
+
+        // Define hasIntent como false
+        hasIntent = false;
 
         // Declara um listenner para o botão calcular
         calcular.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +99,26 @@ public class variacao_entalpia extends AppCompatActivity {
                 calcular.setBackgroundColor(ContextCompat.getColor(this,
                         R.color.clearButton));
                 calcular.setText(R.string.limpar);
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] dn = new Double[3];
+                    dn[0] = null;
+                    dn[1] = d_tf;
+                    dn[2] = d_ti;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(dn);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.variacao_entalpia));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if (d_variacao != null && d_tf == null && d_ti != null){
                 // Define a visibilidade das linhas como visivel
@@ -105,6 +134,26 @@ public class variacao_entalpia extends AppCompatActivity {
                 calcular.setBackgroundColor(ContextCompat.getColor(this,
                         R.color.clearButton));
                 calcular.setText(R.string.limpar);
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] dn = new Double[3];
+                    dn[0] = d_variacao;
+                    dn[1] = null;
+                    dn[2] = d_ti;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(dn);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.variacao_entalpia));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if (d_variacao != null && d_tf != null && d_ti == null){
                 // Define a visibilidade das linhas como visivel
@@ -120,6 +169,26 @@ public class variacao_entalpia extends AppCompatActivity {
                 calcular.setBackgroundColor(ContextCompat.getColor(this,
                         R.color.clearButton));
                 calcular.setText(R.string.limpar);
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] dn = new Double[3];
+                    dn[0] = d_variacao;
+                    dn[1] = d_tf;
+                    dn[2] = null;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(dn);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.variacao_entalpia));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if (d_variacao != null && d_tf != null && d_ti != null){
                 TudoPreenchido td = new TudoPreenchido();

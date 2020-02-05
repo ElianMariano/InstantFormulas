@@ -1,6 +1,7 @@
 package com.company.app.formulas.fisica;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,8 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.company.app.ConvertStringtoData;
 import com.company.app.ItensLibrary.EmptyFragment;
 import com.company.app.ItensLibrary.TudoPreenchido;
+import com.company.app.Models.HistoricoHelper;
 import com.example.company.formulas.R;
 
 public class equa_torricelli extends AppCompatActivity {
@@ -19,6 +22,7 @@ public class equa_torricelli extends AppCompatActivity {
     private TextView line1, line2, line3, line4, line5, line6, line7;
     private Button calcular;
     private boolean isDone;
+    private boolean hasIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,21 +30,24 @@ public class equa_torricelli extends AppCompatActivity {
         setContentView(R.layout.activity_equa_torricelli);
 
         // Referencia os itens
-        V = (EditText) findViewById(R.id.V);
-        Vo = (EditText) findViewById(R.id.Vo);
-        a = (EditText) findViewById(R.id.a);
-        d = (EditText) findViewById(R.id.d);
-        line1 = (TextView) findViewById(R.id.line1);
-        line2 = (TextView) findViewById(R.id.line2);
-        line3 = (TextView) findViewById(R.id.line3);
-        line4 = (TextView) findViewById(R.id.line4);
-        line5 = (TextView) findViewById(R.id.line5);
-        line6 = (TextView) findViewById(R.id.line6);
-        line7 = (TextView) findViewById(R.id.line7);
-        calcular = (Button) findViewById(R.id.calcular);
+        V = findViewById(R.id.V);
+        Vo = findViewById(R.id.Vo);
+        a = findViewById(R.id.a);
+        d = findViewById(R.id.d);
+        line1 = findViewById(R.id.line1);
+        line2 = findViewById(R.id.line2);
+        line3 = findViewById(R.id.line3);
+        line4 = findViewById(R.id.line4);
+        line5 = findViewById(R.id.line5);
+        line6 = findViewById(R.id.line6);
+        line7 = findViewById(R.id.line7);
+        calcular = findViewById(R.id.calcular);
 
         // Define o valor de isDone como false
         isDone = false;
+
+        // Define hasIntent como false
+        hasIntent = false;
 
         // Define um listener para o botão calcular
         calcular.setOnClickListener(new View.OnClickListener() {
@@ -128,6 +135,27 @@ public class equa_torricelli extends AppCompatActivity {
                 calcular.setBackgroundColor(ContextCompat.getColor(this,
                         R.color.clearButton));
                 calcular.setText(R.string.limpar);
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] dn = new Double[4];
+                    dn[0] = null;
+                    dn[1] = dvo;
+                    dn[2] = da;
+                    dn[3] = dd;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(dn);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.equa_torricelli));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if (dv != null && dvo == null && da != null && dd != null){
                 // Define a visibilidade das linhas
@@ -170,6 +198,27 @@ public class equa_torricelli extends AppCompatActivity {
                 calcular.setBackgroundColor(ContextCompat.getColor(this,
                         R.color.clearButton));
                 calcular.setText(R.string.limpar);
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] dn = new Double[4];
+                    dn[0] = dv;
+                    dn[1] = null;
+                    dn[2] = da;
+                    dn[3] = dd;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(dn);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.equa_torricelli));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if (dv != null && dvo != null && da == null && dd != null){
                 // Define a visibilidade das linhas
@@ -211,6 +260,27 @@ public class equa_torricelli extends AppCompatActivity {
                 calcular.setBackgroundColor(ContextCompat.getColor(this,
                         R.color.clearButton));
                 calcular.setText(R.string.limpar);
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] dn = new Double[4];
+                    dn[0] = dv;
+                    dn[1] = dvo;
+                    dn[2] = null;
+                    dn[3] = dd;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(dn);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.equa_torricelli));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if(dv != null && dvo != null && da != null && dd == null){
                 // Define a visibilidade das linhas
@@ -252,6 +322,27 @@ public class equa_torricelli extends AppCompatActivity {
                 calcular.setBackgroundColor(ContextCompat.getColor(this,
                         R.color.clearButton));
                 calcular.setText(R.string.limpar);
+
+                if (!hasIntent){
+                    // Variáveis que obtem os dados
+                    Double[] dn = new Double[4];
+                    dn[0] = dv;
+                    dn[1] = dvo;
+                    dn[2] = da;
+                    dn[3] = null;
+
+                    // String que armazena o dado convertido
+                    String data = ConvertStringtoData.DataToString(dn);
+
+                    // Cria um ContentValues
+                    ContentValues cv = new ContentValues();
+                    cv.put("titulo", getResources().getString(R.string.equa_torricelli));
+                    cv.put("data", data);
+
+                    // Cria uma instância do banco de dados
+                    HistoricoHelper hh = new HistoricoHelper(this);
+                    hh.inserir(cv);
+                }
             }
             else if (dv == null && dvo == null && da == null && dd == null){
                 TudoPreenchido td = new TudoPreenchido();

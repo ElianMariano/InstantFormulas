@@ -1,6 +1,5 @@
 package com.company.app;
 
-import android.app.ActionBar;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -18,14 +17,14 @@ import android.widget.TextView;
 
 import com.company.app.ItensLibrary.FavoriteItem;
 import com.company.app.ItensLibrary.HistoricoItem;
+import com.company.app.Models.FavoritesHelper;
+import com.company.app.Models.HistoricoHelper;
 import com.example.company.formulas.R;
 
 import com.company.app.ItensLibrary.BackAlertFragment;
 
 import java.util.List;
 
-import static android.view.Gravity.CENTER;
-import static android.view.Gravity.TOP;
 import static android.view.View.GONE;
 
 //Criar uma classe que extenda a classe TabHost
@@ -72,16 +71,16 @@ public class MainActivity extends AppCompatActivity{
         TabHostMain.addTab(spec);
 
         // Referencia dos TextViews
-        txt_R = (TextView) findViewById(R.id.txt_R);
-        txt_F = (TextView) findViewById(R.id.txt_F);
+        txt_R = findViewById(R.id.txt_R);
+        txt_F = findViewById(R.id.txt_F);
 
         // Referencia os layouts que armazenam os itens
-        r_cont = (LinearLayout) findViewById(R.id.r_cont);
-        f_cont = (LinearLayout) findViewById(R.id.f_cont);
+        r_cont = findViewById(R.id.r_cont);
+        f_cont = findViewById(R.id.f_cont);
 
         // Referencia os spaces
-        r_space = (Space) findViewById(R.id.r_space);
-        f_space = (Space) findViewById(R.id.f_space);
+        r_space = findViewById(R.id.r_space);
+        f_space = findViewById(R.id.f_space);
 
         /*
          Cria os itens de recentes

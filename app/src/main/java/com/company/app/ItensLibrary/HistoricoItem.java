@@ -1,11 +1,7 @@
 package com.company.app.ItensLibrary;
 
 import android.annotation.SuppressLint;
-import android.app.usage.UsageEvents;
-import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,17 +9,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.company.app.Formulas;
-import com.company.app.HistoricoHelper;
-import com.company.app.StartFormula;
+import com.company.app.Models.HistoricoHelper;
 import com.company.app.StartFormulaByString;
 import com.example.company.formulas.R;
-
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
 
 /*
 Este item será utilizado sempre que um novo histórico for adicionado
@@ -66,7 +56,7 @@ public class HistoricoItem extends FrameLayout {
                 false);
 
         // Obtêm o botão do layout
-        historico_b = (Button) itens.findViewById(R.id.historico_b);
+        historico_b = itens.findViewById(R.id.historico_b);
         // Define o texto do botão
         historico_b.setText(text);
         // Define o botão como não clicável
