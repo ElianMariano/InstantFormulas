@@ -17,8 +17,6 @@ import com.example.company.formulas.R;
 
 import static android.view.View.GONE;
 
-// TODO Resolver bug do botão limpar
-
 public class variacao_entalpia extends AppCompatActivity {
     // Declara os itens
     private EditText variacao;
@@ -100,6 +98,9 @@ public class variacao_entalpia extends AppCompatActivity {
                         R.color.clearButton));
                 calcular.setText(R.string.limpar);
 
+                // Define isDone como true
+                isDone = true;
+
                 if (!hasIntent){
                     // Variáveis que obtem os dados
                     Double[] dn = new Double[3];
@@ -135,6 +136,9 @@ public class variacao_entalpia extends AppCompatActivity {
                         R.color.clearButton));
                 calcular.setText(R.string.limpar);
 
+                // Define isDone como true
+                isDone = true;
+
                 if (!hasIntent){
                     // Variáveis que obtem os dados
                     Double[] dn = new Double[3];
@@ -169,6 +173,9 @@ public class variacao_entalpia extends AppCompatActivity {
                 calcular.setBackgroundColor(ContextCompat.getColor(this,
                         R.color.clearButton));
                 calcular.setText(R.string.limpar);
+
+                // Define isDone como true
+                isDone = true;
 
                 if (!hasIntent){
                     // Variáveis que obtem os dados
@@ -210,9 +217,17 @@ public class variacao_entalpia extends AppCompatActivity {
             line2.setText("");
             line3.setText("");
 
+            // Esvazia os EditTexts
+            variacao.setText("");
+            tf.setText("");
+            ti.setText("");
+
             // Redefine o estilo do botão calcular
             calcular.setBackgroundColor(ContextCompat.getColor(this, R.color.AppThemeBlue));
             calcular.setText(R.string.Calc);
+
+            // Define isDone como false
+            isDone = false;
         }
     }
 }
