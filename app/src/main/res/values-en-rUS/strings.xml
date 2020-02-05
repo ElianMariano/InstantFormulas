@@ -62,4 +62,20 @@
     <string name="equa_torricelliDes">Calculates the velocity of some body in movement</string>
     <string name="acel_mediaDes">Calculates the average aceleration of a body</string>
     <string name="acel_media">Average aceleration</string>
+    <string name="Recente_off">Item recently removed</string>
+    <string name="area_t">Area of the rect triangle</string>
+    <string name="dado_invalido">Invalid input!</string>
+    <string name="dilat_linear">Linear thermal expasion</string>
+    <string name="dilat_linearDes">Calculates the linear thermal expasion</string>
+    <string name="energia_ativacao">Activation energy</string>
+    <string name="energia_atvacaoDes">Calculates the activation energy</string>
+    <string name="equa_calorimetriaDes">Calculates the amount of sensitive  heat</string>
+    <string name="equa_torricelli">Torricelli\'s equation</string>
+    <string name="pitagoras">Pythagorean theorem</string>
+    <string name="pitagorasDes">Calculates the hypotenuse of a rect triangle</string>
+    <string name="regra_de_tres">Proportion</string>
+    <string name="variacao_entalpia">Enthalpy variation</string>
+    <string name="variacao_entalpiaDes">Calculates the enthalpy variation</string>
+    <string name="velocidade_media">Average velocity of a chemical reaction</string>
+    <string name="velocidade_mediaDes">Calculates the average velocity of a chemical reaction</string>
 </resources>
