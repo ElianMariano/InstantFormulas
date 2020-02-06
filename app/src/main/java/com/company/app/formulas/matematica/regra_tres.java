@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.company.app.ConvertStringtoData;
 import com.company.app.Models.HistoricoHelper;
 import com.company.app.ItensLibrary.EmptyFragment;
+import com.company.app.formulas.fisica.acel_media;
 import com.example.company.formulas.R;
 import com.company.app.form_choose;
 
@@ -80,6 +82,10 @@ public class regra_tres extends AppCompatActivity {
             // Executa a função solve
             solve();
         }
+
+        // Cria o botão voltar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
     }
 
     @SuppressLint("DefaultLocale")
@@ -176,9 +182,15 @@ public class regra_tres extends AppCompatActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        startActivity(new Intent(regra_tres.this, form_choose.class));
+        finish();
+        return true;
+    }
+
+    @Override
     public void onBackPressed(){
-        Intent in = new Intent(regra_tres.this, form_choose.class);
-        startActivity(in);
+        startActivity(new Intent(regra_tres.this, form_choose.class));
         finish();
     }
 }

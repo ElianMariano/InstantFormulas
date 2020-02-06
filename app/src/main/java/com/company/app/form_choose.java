@@ -133,7 +133,6 @@ public class form_choose extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         startActivity(new Intent(form_choose.this, MainActivity.class));
-        finish();
         return true;
     }
 

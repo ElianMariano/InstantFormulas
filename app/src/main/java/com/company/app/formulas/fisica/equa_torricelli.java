@@ -2,10 +2,13 @@ package com.company.app.formulas.fisica;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import java.lang.Math;
+
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +18,7 @@ import com.company.app.ConvertStringtoData;
 import com.company.app.ItensLibrary.EmptyFragment;
 import com.company.app.ItensLibrary.TudoPreenchido;
 import com.company.app.Models.HistoricoHelper;
+import com.company.app.form_choose;
 import com.example.company.formulas.R;
 
 public class equa_torricelli extends AppCompatActivity {
@@ -56,6 +60,10 @@ public class equa_torricelli extends AppCompatActivity {
                 solve();
             }
         });
+
+        // Cria o botão voltar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
     }
 
     @SuppressLint("DefaultLocale")
@@ -376,5 +384,18 @@ public class equa_torricelli extends AppCompatActivity {
             calcular.setBackgroundColor(ContextCompat.getColor(this, R.color.AppThemeBlue));
             calcular.setText(R.string.Calc);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        startActivity(new Intent(equa_torricelli.this, form_choose.class));
+        finish();
+        return true;
+    }
+
+    @Override
+    public void onBackPressed(){
+        startActivity(new Intent(equa_torricelli.this, form_choose.class));
+        finish();
     }
 }
