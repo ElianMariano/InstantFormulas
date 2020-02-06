@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.company.app.formulas.quimica.velocidade_media">
+    tools:context="com.EducacaoApps.InstantFormulas.formulas.quimica.velocidade_media">
 
 
     <LinearLayout

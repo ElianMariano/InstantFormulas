@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.company.app.formulas.quimica.variacao_entalpia">
+    tools:context="com.EducacaoApps.InstantFormulas.formulas.quimica.variacao_entalpia">
 
     <LinearLayout
         android:layout_width="match_parent"

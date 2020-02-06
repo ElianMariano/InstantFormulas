@@ -10,11 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.company.app.MainActivity" />
+            android:name="com.EducacaoApps.InstantFormulas.MainActivity" />
         <activity
-            android:name="com.company.app.formulas.matematica.regra_tres" />
+            android:name="com.EducacaoApps.InstantFormulas.formulas.matematica.regra_tres" />
         <activity
-            android:name="com.company.app.SplashActivity"
+            android:name="com.EducacaoApps.InstantFormulas.SplashActivity"
             android:theme="@style/JustTools" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,23 +22,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.company.app.form_choose" />
+            android:name="com.EducacaoApps.InstantFormulas.form_choose" />
         <activity
-            android:name="com.company.app.configuracoes" />
-        <activity android:name="com.company.app.formulas.matematica.area_q" />
-        <activity android:name="com.company.app.formulas.matematica.area_t" />
-        <activity android:name="com.company.app.formulas.matematica.comp_circulo" />
-        <activity android:name="com.company.app.formulas.matematica.pitagoras" />
-        <activity android:name="com.company.app.formulas.quimica.densidade" />
-        <activity android:name="com.company.app.formulas.quimica.velocidade_media" />
-        <activity android:name="com.company.app.formulas.quimica.variacao_entalpia" />
-        <activity android:name="com.company.app.formulas.quimica.energia_ativacao" />
-        <activity android:name="com.company.app.formulas.fisica.dilatacao_linear" />
-        <activity android:name="com.company.app.formulas.fisica.velo_media" />
-        <activity android:name="com.company.app.formulas.fisica.acel_media" />
-        <activity android:name="com.company.app.formulas.fisica.equa_torricelli" />
-        <activity android:name="com.company.app.formulas.fisica.equa_calorimetria" />
-        <activity android:name="com.company.app.formulas.fisica.clapeyron" />
+            android:name="com.EducacaoApps.InstantFormulas.configuracoes" />
+        <activity android:name="com.EducacaoApps.InstantFormulas.formulas.matematica.area_q" />
+        <activity android:name="com.EducacaoApps.InstantFormulas.formulas.matematica.area_t" />
+        <activity android:name="com.EducacaoApps.InstantFormulas.formulas.matematica.comp_circulo" />
+        <activity android:name="com.EducacaoApps.InstantFormulas.formulas.matematica.pitagoras" />
+        <activity android:name="com.EducacaoApps.InstantFormulas.formulas.quimica.densidade" />
+        <activity android:name="com.EducacaoApps.InstantFormulas.formulas.quimica.velocidade_media" />
+        <activity android:name="com.EducacaoApps.InstantFormulas.formulas.quimica.variacao_entalpia" />
+        <activity android:name="com.EducacaoApps.InstantFormulas.formulas.quimica.energia_ativacao" />
+        <activity android:name="com.EducacaoApps.InstantFormulas.formulas.fisica.dilatacao_linear" />
+        <activity android:name="com.EducacaoApps.InstantFormulas.formulas.fisica.velo_media" />
+        <activity android:name="com.EducacaoApps.InstantFormulas.formulas.fisica.acel_media" />
+        <activity android:name="com.EducacaoApps.InstantFormulas.formulas.fisica.equa_torricelli" />
+        <activity android:name="com.EducacaoApps.InstantFormulas.formulas.fisica.equa_calorimetria" />
+        <activity android:name="com.EducacaoApps.InstantFormulas.formulas.fisica.clapeyron" />
     </application>
 
 </manifest>

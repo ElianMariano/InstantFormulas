@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Formulas</string>
+    <string name="app_name">InstantFormulas</string>
     <string name="SplashImg">This image is the icon of the application.</string>
     <string name="voltar">Are you sure you want to exit?</string>
     <string name="inicio_text">You do not have a recent activity.</string>

@@ -12,7 +12,7 @@
     android:paddingRight="2dp"
     android:paddingStart="2dp"
     android:paddingTop="2dp"
-    tools:context="com.company.app.formulas.matematica.comp_circulo">
+    tools:context="com.EducacaoApps.InstantFormulas.formulas.matematica.comp_circulo">
 
     <LinearLayout
         android:layout_width="match_parent"

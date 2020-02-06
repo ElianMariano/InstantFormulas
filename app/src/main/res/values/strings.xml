@@ -1,6 +1,6 @@
 <resources>
     <!--Título do app e da tela principal-->
-    <string name="app_name">Formulas</string>
+    <string name="app_name">InstantFormulas</string>
 
     <!--Descrições do app-->
     <string name="SplashImg">Esta imagem é ícone do aplicativo.</string>
