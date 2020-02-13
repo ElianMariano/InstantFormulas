@@ -16,7 +16,7 @@ import com.EducacaoApps.InstantFormulas.ItensLibrary.EmptyFragment;
 import com.EducacaoApps.InstantFormulas.ItensLibrary.TudoPreenchido;
 import com.EducacaoApps.InstantFormulas.Models.HistoricoHelper;
 import com.EducacaoApps.InstantFormulas.form_choose;
-import com.example.company.formulas.R;
+import com.EducacaoApps.InstantFormulas.formulas.R;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;

@@ -5,7 +5,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.company.formulas.R;
+import com.EducacaoApps.InstantFormulas.formulas.R;
 
 public class SplashActivity extends AppCompatActivity {
     //Tempo em milissegundos em que será mostrado a SplashScreen

@@ -1,4 +1,4 @@
-package com.example.company.formulas;
+package com.EducacaoApps.InstantFormulas.formulas;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

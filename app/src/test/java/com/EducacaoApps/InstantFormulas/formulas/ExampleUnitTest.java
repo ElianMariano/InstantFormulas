@@ -1,4 +1,4 @@
-package com.example.company.formulas;
+package com.EducacaoApps.InstantFormulas.formulas;
 
 import org.junit.Test;
 

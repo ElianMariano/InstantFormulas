@@ -5,7 +5,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
 
-import com.example.company.formulas.R;
+import com.EducacaoApps.InstantFormulas.formulas.R;
 
 // Alert dialog fragment usado quando todos oss campos de uma formula estiverem preenchidos
 public class TudoPreenchido extends DialogFragment{

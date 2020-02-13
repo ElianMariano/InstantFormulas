@@ -5,7 +5,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
 
-import com.example.company.formulas.R;
+import com.EducacaoApps.InstantFormulas.formulas.R;
 
 /*
 AlertDialog usado quando o dado obtido pelo usuário for inválido

@@ -19,7 +19,7 @@ import com.EducacaoApps.InstantFormulas.ItensLibrary.FavoriteItem;
 import com.EducacaoApps.InstantFormulas.ItensLibrary.HistoricoItem;
 import com.EducacaoApps.InstantFormulas.Models.FavoritesHelper;
 import com.EducacaoApps.InstantFormulas.Models.HistoricoHelper;
-import com.example.company.formulas.R;
+import com.EducacaoApps.InstantFormulas.formulas.R;
 
 import com.EducacaoApps.InstantFormulas.ItensLibrary.BackAlertFragment;
 
@@ -28,7 +28,6 @@ import java.util.List;
 import static android.view.View.GONE;
 
 //Criar uma classe que extenda a classe TabHost
-// TODO Verificar a açao das activities de formula quando o botão voltar for pressionado
 public class MainActivity extends AppCompatActivity{
     private TabHost TabHostMain;
     // Referencia dos TextView
@@ -193,19 +192,13 @@ public class MainActivity extends AppCompatActivity{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-        switch (item.getItemId()){
-            case R.id.config:
-                Intent in = new Intent(MainActivity.this, configuracoes.class);
-                startActivity(in);
-                finish();
-                return true;
-            case R.id.form:
-                Intent in2 = new Intent(MainActivity.this, form_choose.class);
-                startActivity(in2);
-                finish();
-                return true;
-            default:
-                super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.form){
+            Intent in = new Intent(MainActivity.this, form_choose.class);
+            startActivity(in);
+            finish();
+        }
+        else{
+            super.onOptionsItemSelected(item);
         }
         return true;
     }

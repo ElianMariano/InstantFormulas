@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.EducacaoApps.InstantFormulas.Models.FavoritesHelper;
 import com.EducacaoApps.InstantFormulas.StartFormulaByString;
-import com.example.company.formulas.R;
+import com.EducacaoApps.InstantFormulas.formulas.R;
 
 /*
  Este item sera usado na tela principal dentro da guia favoritos, ele irá inicializar com o botão

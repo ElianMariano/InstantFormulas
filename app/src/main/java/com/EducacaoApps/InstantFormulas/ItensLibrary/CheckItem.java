@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.EducacaoApps.InstantFormulas.Models.FavoritesHelper;
 import com.EducacaoApps.InstantFormulas.Formulas;
 import com.EducacaoApps.InstantFormulas.StartFormula;
-import com.example.company.formulas.R;
+import com.EducacaoApps.InstantFormulas.formulas.R;
 import java.util.List;
 
 import static android.support.v4.content.res.ResourcesCompat.getDrawable;

@@ -2,7 +2,7 @@ package com.EducacaoApps.InstantFormulas;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
-import com.example.company.formulas.R;
+import com.EducacaoApps.InstantFormulas.formulas.R;
 
 /*
    Esta classe Inicia uma activity através de um método estático que tomam uma activity e uma String

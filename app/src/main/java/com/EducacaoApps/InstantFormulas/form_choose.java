@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ScrollView;
 
-import com.example.company.formulas.R;
+import com.EducacaoApps.InstantFormulas.formulas.R;
 
 import com.EducacaoApps.InstantFormulas.ItensLibrary.CheckItem;
 import com.EducacaoApps.InstantFormulas.ItensLibrary.ExpandView;

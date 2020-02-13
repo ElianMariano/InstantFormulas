@@ -9,7 +9,7 @@
     android:layout_gravity="center"
     android:background="@color/AppThemeBlue"
     android:gravity="center"
-    tools:context="com.example.company.formulas.SplashActivity">
+    tools:context="com.EducacaoApps.InstantFormulas.formulas.SplashActivity">
 
     <ImageView
         android:id="@+id/SplashImg"

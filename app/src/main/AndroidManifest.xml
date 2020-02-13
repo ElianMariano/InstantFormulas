@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.company.formulas">
+    package="com.EducacaoApps.InstantFormulas.formulas">
 
     <application
         android:allowBackup="true"
@@ -23,8 +23,6 @@
         </activity>
         <activity
             android:name="com.EducacaoApps.InstantFormulas.form_choose" />
-        <activity
-            android:name="com.EducacaoApps.InstantFormulas.configuracoes" />
         <activity android:name="com.EducacaoApps.InstantFormulas.formulas.matematica.area_q" />
         <activity android:name="com.EducacaoApps.InstantFormulas.formulas.matematica.area_t" />
         <activity android:name="com.EducacaoApps.InstantFormulas.formulas.matematica.comp_circulo" />

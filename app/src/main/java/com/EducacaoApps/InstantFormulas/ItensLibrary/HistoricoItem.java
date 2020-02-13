@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.EducacaoApps.InstantFormulas.Models.HistoricoHelper;
 import com.EducacaoApps.InstantFormulas.StartFormulaByString;
-import com.example.company.formulas.R;
+import com.EducacaoApps.InstantFormulas.formulas.R;
 
 /*
 Este item será utilizado sempre que um novo histórico for adicionado

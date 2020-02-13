@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.EducacaoApps.InstantFormulas.ConvertStringtoData;
 import com.EducacaoApps.InstantFormulas.Models.HistoricoHelper;
 import com.EducacaoApps.InstantFormulas.ItensLibrary.EmptyFragment;
-import com.example.company.formulas.R;
+import com.EducacaoApps.InstantFormulas.formulas.R;
 import com.EducacaoApps.InstantFormulas.form_choose;
 
 import java.util.List;
