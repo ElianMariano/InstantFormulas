@@ -51,7 +51,7 @@ public class HistoricoHelper extends SQLiteOpenHelper {
 
         // Deleta o item
         long id = sql.delete(NOME, "id LIKE ?", new String[]{"%" +
-                String.valueOf(id_item) + "%"});
+                id_item + "%"});
 
         // Fecha o banco de dados
         sql.close();
@@ -87,6 +87,9 @@ public class HistoricoHelper extends SQLiteOpenHelper {
             }
             while(c.moveToNext());
         }
+
+        // Close the database
+        sql.close();
 
         return lista;
     }

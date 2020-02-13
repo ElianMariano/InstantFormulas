@@ -29,7 +29,7 @@ public class form_choose extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
 
         //Obtém referencia do layout
-        ScrV = (ScrollView) findViewById(R.id.ScrollForms);
+        ScrV = findViewById(R.id.ScrollForms);
 
         //Cria um lista expandivel
         ex = new ExpandView(this);

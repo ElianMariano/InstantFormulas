@@ -97,9 +97,6 @@ public class MainActivity extends AppCompatActivity{
             r_space.setVisibility(GONE);
         }
 
-        // Variável que armazena o index
-        int i = 1;
-
         // Adiciona os itens no layout
         for (ContentValues cv: h_lista){
             // Obtem o titulo
@@ -108,13 +105,11 @@ public class MainActivity extends AppCompatActivity{
             String data = cv.getAsString("data");
 
             // Cria o item
-            HistoricoItem historicoItem = new HistoricoItem(this, titulo, data, i);
+            HistoricoItem historicoItem = new HistoricoItem(this, titulo, data,
+                    cv.getAsLong("id"));
 
             // Adiciona o item no layout
             r_cont.addView(historicoItem);
-
-            // Incrementa um ao index
-            i++;
         }
 
         // Verifica cada mudança ocorrida no layout
