@@ -38,14 +38,14 @@ public class area_t extends AppCompatActivity {
         setContentView(R.layout.activity_area_t);
 
         // Referencia os itens utilizados na activity
-        area = (EditText) findViewById(R.id.area);
-        base = (EditText) findViewById(R.id.base);
-        altura = (EditText) findViewById(R.id.altura);
-        line1 = (TextView) findViewById(R.id.line1);
-        line2 = (TextView) findViewById(R.id.line2);
-        line3 = (TextView) findViewById(R.id.line3);
-        line4 = (TextView) findViewById(R.id.line4);
-        calcular = (Button) findViewById(R.id.calcular);
+        area = findViewById(R.id.area);
+        base = findViewById(R.id.base);
+        altura = findViewById(R.id.altura);
+        line1 = findViewById(R.id.line1);
+        line2 = findViewById(R.id.line2);
+        line3 = findViewById(R.id.line3);
+        line4 = findViewById(R.id.line4);
+        calcular = findViewById(R.id.calcular);
 
         // Define o valor para isDone
         isDone = false;

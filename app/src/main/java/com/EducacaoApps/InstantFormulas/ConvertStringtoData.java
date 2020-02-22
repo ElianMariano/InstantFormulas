@@ -21,7 +21,7 @@ public class ConvertStringtoData {
                 convert += Double.valueOf(data[i]);
             }
             else{
-                convert += "";
+                convert += "N";
             }
 
             convert += "-";
@@ -40,7 +40,12 @@ public class ConvertStringtoData {
 
         // Loop que adiciona cada novo dado dentro da variável
         for (int i = 0;i < split_string.length; i++){
-            convert.add(Double.valueOf(split_string[i]));
+            if (split_string[i].equals("N")){
+                convert.add(null);
+            }
+            else{
+                convert.add(Double.valueOf(split_string[i]));
+            }
         }
 
         return convert;
@@ -50,6 +55,12 @@ public class ConvertStringtoData {
     public static String[] SplitString(String data){
         // Variável que armazena a string dividida
         String[] split = data.split("-");
+
+        // Verifica se uma das strings é igual a N
+        for (int i = 0;i < split.length;i++){
+            if (split[i].equals("N"))
+                split[i] = "";
+        }
 
         return split;
     }
