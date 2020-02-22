@@ -1,7 +1,7 @@
 package com.EducacaoApps.InstantFormulas;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import com.EducacaoApps.InstantFormulas.formulas.R;
 
 /*

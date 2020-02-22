@@ -5,7 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.ContentValues;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +19,7 @@ import com.EducacaoApps.InstantFormulas.StartFormula;
 import com.EducacaoApps.InstantFormulas.formulas.R;
 import java.util.List;
 
-import static android.support.v4.content.res.ResourcesCompat.getDrawable;
+import static androidx.core.content.res.ResourcesCompat.getDrawable;
 
 //Procurar o erro nos metodos expand e desExpand
 //Descobrir uma forma de mudar o tema do botão desta CheckBox

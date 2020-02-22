@@ -1,8 +1,8 @@
 package com.EducacaoApps.InstantFormulas.ItensLibrary;
 
 import android.annotation.SuppressLint;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -158,7 +158,7 @@ public class HistoricoItem extends FrameLayout {
                         if (view.getX() > 350 || view.getX() < -350){
                             item_delete();
                         }
-                        else if (view.getX() < 10 && view.getX() > -10){
+                        else if (view.getX() == 0.0f){
                             init_activity();
                         }
                         else {

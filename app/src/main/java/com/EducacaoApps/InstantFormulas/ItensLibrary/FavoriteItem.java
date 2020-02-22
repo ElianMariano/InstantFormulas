@@ -1,7 +1,7 @@
 package com.EducacaoApps.InstantFormulas.ItensLibrary;
 
 import android.annotation.SuppressLint;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
