@@ -21,6 +21,7 @@ import com.EducacaoApps.InstantFormulas.Models.HistoricoHelper;
 import com.EducacaoApps.InstantFormulas.form_choose;
 import com.EducacaoApps.InstantFormulas.formulas.R;
 
+// TODO Melhorar a precisão desta formula
 public class equa_torricelli extends AppCompatActivity {
     private EditText V, Vo, a, d;
     private TextView line1, line2, line3, line4, line5, line6, line7;
@@ -52,6 +53,60 @@ public class equa_torricelli extends AppCompatActivity {
 
         // Define hasIntent como false
         hasIntent = false;
+
+        // Obtêm o intent
+        Intent in = getIntent();
+        // Variável que armazena os dados
+        String data = in.getStringExtra("data");
+
+        if (data != null){
+            // Define hasIntent como true
+            hasIntent = true;
+
+            // Obtêm os valores e armazena dentro da variável
+            String[] split = ConvertStringtoData.SplitString(data);
+
+            // Variáveis que armazenam os dados
+            String sv, svo, sa, sd;
+
+            // Previne que ocorram erros
+            try{
+                sv = split[0];
+            }
+            catch(IndexOutOfBoundsException e){
+                sv = "";
+            }
+
+            try{
+                svo = split[1];
+            }
+            catch(IndexOutOfBoundsException e){
+                svo = "";
+            }
+
+            try{
+                sa = split[2];
+            }
+            catch(IndexOutOfBoundsException e){
+                sa = "";
+            }
+
+            try{
+                sd = split[3];
+            }
+            catch(IndexOutOfBoundsException e){
+                sd = "";
+            }
+
+            // Preenche os edittexts com os respectivos valores
+            V.setText(sv);
+            Vo.setText(svo);
+            a.setText(sa);
+            d.setText(sd);
+
+            // Executa o calculo
+            solve();
+        }
 
         // Define um listener para o botão calcular
         calcular.setOnClickListener(new View.OnClickListener() {

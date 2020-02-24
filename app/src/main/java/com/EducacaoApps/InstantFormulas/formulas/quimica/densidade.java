@@ -54,6 +54,52 @@ public class densidade extends AppCompatActivity {
         // Define hasIntent como false
         hasIntent = false;
 
+        // Obtêm o intent
+        Intent in = getIntent();
+        // Variável que armazena os dados
+        String data = in.getStringExtra("data");
+
+        if (data != null){
+            // Define hasIntent como true
+            hasIntent = true;
+
+            // Obtêm os valores e armazena dentro da variável
+            String[] split = ConvertStringtoData.SplitString(data);
+
+            // Variáveis que armazenam os dados
+            String sd, sm, sv;
+
+            // Previne que ocorram erros
+            try{
+                sd = split[0];
+            }
+            catch(IndexOutOfBoundsException e){
+                sd = "";
+            }
+
+            try{
+                sm = split[1];
+            }
+            catch(IndexOutOfBoundsException e){
+                sm = "";
+            }
+
+            try{
+                sv = split[2];
+            }
+            catch(IndexOutOfBoundsException e){
+                sv = "";
+            }
+
+            // Preenche os edittexts com os respectivos valores
+            densidade.setText(sd);
+            massa.setText(sm);
+            volume.setText(sv);
+
+            // Executa o calculo
+            solve();
+        }
+
         // Define um listener para o botão calcular
         calcular.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -197,7 +243,7 @@ public class densidade extends AppCompatActivity {
 
                     // Cria um ContentValues
                     ContentValues cv = new ContentValues();
-                    cv.put("titulo", getResources().getString(R.string.area_q));
+                    cv.put("titulo", getResources().getString(R.string.densidade));
                     cv.put("data", data);
 
                     // Cria uma instância do banco de dados

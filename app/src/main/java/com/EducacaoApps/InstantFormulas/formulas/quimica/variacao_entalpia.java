@@ -17,7 +17,6 @@ import com.EducacaoApps.InstantFormulas.ItensLibrary.TudoPreenchido;
 import com.EducacaoApps.InstantFormulas.Models.HistoricoHelper;
 import com.EducacaoApps.InstantFormulas.form_choose;
 import com.EducacaoApps.InstantFormulas.formulas.R;
-
 import static android.view.View.GONE;
 
 public class variacao_entalpia extends AppCompatActivity {
@@ -51,6 +50,52 @@ public class variacao_entalpia extends AppCompatActivity {
 
         // Define hasIntent como false
         hasIntent = false;
+
+        // Obtêm o intent
+        Intent in = getIntent();
+        // Variável que armazena os dados
+        String data = in.getStringExtra("data");
+
+        if (data != null){
+            // Define hasIntent como true
+            hasIntent = true;
+
+            // Obtêm os valores e armazena dentro da variável
+            String[] split = ConvertStringtoData.SplitString(data);
+
+            // Variáveis que armazenam os dados
+            String svaria, stf, sti;
+
+            // Previne que ocorram erros
+            try{
+                svaria = split[0];
+            }
+            catch(IndexOutOfBoundsException e){
+                svaria = "";
+            }
+
+            try{
+                stf = split[1];
+            }
+            catch(IndexOutOfBoundsException e){
+                stf = "";
+            }
+
+            try{
+                sti = split[2];
+            }
+            catch(IndexOutOfBoundsException e){
+                sti = "";
+            }
+
+            // Preenche os edittexts com os respectivos valores
+            variacao.setText(svaria);
+            tf.setText(stf);
+            ti.setText(sti);
+
+            // Executa o calculo
+            solve();
+        }
 
         // Declara um listenner para o botão calcular
         calcular.setOnClickListener(new View.OnClickListener() {
@@ -136,7 +181,7 @@ public class variacao_entalpia extends AppCompatActivity {
 
                 line1.setText(String.valueOf(d_variacao) + " = Tf - " + String.valueOf(d_ti));
                 line2.setText("Tf = " + String.valueOf(d_variacao) + " + "  + String.valueOf(d_ti));
-                line3.setText("Tf = " + String.format("%.2f", d_variacao = d_ti));
+                line3.setText("Tf = " + String.format("%.2f", d_variacao + d_ti));
 
                 // Define o estilo do botão calcular
                 calcular.setBackgroundColor(ContextCompat.getColor(this,

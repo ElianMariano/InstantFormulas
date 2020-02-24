@@ -40,20 +40,66 @@ public class acel_media extends AppCompatActivity {
         setContentView(R.layout.activity_acel_media);
 
         // Referencia os itens utilizados na activity
-        aceleracao = (EditText) findViewById(R.id.aceleracao);
-        velocidade = (EditText) findViewById(R.id.velocidade);
-        tempo = (EditText) findViewById(R.id.tempo);
-        calcular = (Button) findViewById(R.id.calcular);
-        line = (TextView) findViewById(R.id.line);
-        line2 = (TextView) findViewById(R.id.line2);
-        line3 = (TextView) findViewById(R.id.line3);
-        line4 = (TextView) findViewById(R.id.line4);
+        aceleracao = findViewById(R.id.aceleracao);
+        velocidade = findViewById(R.id.velocidade);
+        tempo = findViewById(R.id.tempo);
+        calcular = findViewById(R.id.calcular);
+        line = findViewById(R.id.line);
+        line2 = findViewById(R.id.line2);
+        line3 = findViewById(R.id.line3);
+        line4 = findViewById(R.id.line4);
 
         // Define o valor de isDone
         isDone = false;
 
         // Define hasIntent como false
         hasIntent = false;
+
+        // Obtêm o intent
+        Intent in = getIntent();
+        // Variável que armazena os dados
+        String data = in.getStringExtra("data");
+
+        if (data != null){
+            // Define hasIntent como true
+            hasIntent = true;
+
+            // Obtêm os valores e armazena dentro da variável
+            String[] split = ConvertStringtoData.SplitString(data);
+
+            // Variáveis que armazenam os dados
+            String s_acel, s_velo, s_temp;
+
+            // Previne que ocorram erros
+            try{
+                s_acel = split[0];
+            }
+            catch(IndexOutOfBoundsException e){
+                s_acel = "";
+            }
+
+            try{
+                s_velo = split[1];
+            }
+            catch(IndexOutOfBoundsException e){
+                s_velo = "";
+            }
+
+            try{
+                s_temp = split[2];
+            }
+            catch(IndexOutOfBoundsException e){
+                s_temp = "";
+            }
+
+            // Preenche os edittexts com os respectivos valores
+            aceleracao.setText(s_acel);
+            velocidade.setText(s_velo);
+            tempo.setText(s_temp);
+
+            // Executa o calculo
+            solve();
+        }
 
         // Cria um listener para o botão calcular
         calcular.setOnClickListener(new View.OnClickListener() {

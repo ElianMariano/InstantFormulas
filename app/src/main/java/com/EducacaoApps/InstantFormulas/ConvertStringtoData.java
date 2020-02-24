@@ -5,12 +5,11 @@ import java.util.List;
 
 /*
   Esta classe é responsável por converter os dados de uma String para Double e vice-versa.
-  Ela é usada na activity principal quando é obtido um dado a partir do Intent qeu o item enviou
+  Ela é usada na activity principal quando é obtido um dado a partir do Intent que o item enviou
   ao iniciar a activity.
 */
 public class ConvertStringtoData {
 
-    // TODO Tentar armazenar uma string vazia
     public static String DataToString(Double[] data){
         // Variável que armazena o dado convertido
         String convert = "";

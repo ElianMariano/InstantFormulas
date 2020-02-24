@@ -56,6 +56,52 @@ public class velo_media extends AppCompatActivity {
         // Define hasIntent como false
         hasIntent = false;
 
+        // Obtêm o intent
+        Intent in = getIntent();
+        // Variável que armazena os dados
+        String data = in.getStringExtra("data");
+
+        if (data != null){
+            // Define hasIntent como true
+            hasIntent = true;
+
+            // Obtêm os valores e armazena dentro da variável
+            String[] split = ConvertStringtoData.SplitString(data);
+
+            // Variáveis que armazenam os dados
+            String sv, sd, st;
+
+            // Previne que ocorram erros
+            try{
+                sv = split[0];
+            }
+            catch(IndexOutOfBoundsException e){
+                sv = "";
+            }
+
+            try{
+                sd = split[1];
+            }
+            catch(IndexOutOfBoundsException e){
+                sd = "";
+            }
+
+            try{
+                st = split[2];
+            }
+            catch(IndexOutOfBoundsException e){
+                st = "";
+            }
+
+            // Preenche os edittexts com os respectivos valores
+            velocidade.setText(sv);
+            distancia.setText(sd);
+            tempo.setText(st);
+
+            // Executa o calculo
+            solve();
+        }
+
         // Define um listener para o botão calcular
         calcular.setOnClickListener(new View.OnClickListener() {
             @Override

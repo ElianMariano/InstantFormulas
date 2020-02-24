@@ -20,7 +20,6 @@ import com.EducacaoApps.InstantFormulas.ItensLibrary.TudoPreenchido;
 import com.EducacaoApps.InstantFormulas.form_choose;
 import com.EducacaoApps.InstantFormulas.formulas.R;
 
-// TODO Contruir um alert dialog
 public class pitagoras extends AppCompatActivity {
     private EditText hipotenusa, co, ca;
     private TextView line1, line2, line3, line4, line5, line6;

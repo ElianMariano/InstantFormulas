@@ -56,6 +56,60 @@ public class dilatacao_linear extends AppCompatActivity {
         // Define hasIntent como false
         hasIntent = false;
 
+        // Obtêm o intent
+        Intent in = getIntent();
+        // Variável que armazena os dados
+        String data = in.getStringExtra("data");
+
+        if (data != null){
+            // Define hasIntent como true
+            hasIntent = true;
+
+            // Obtêm os valores e armazena dentro da variável
+            String[] split = ConvertStringtoData.SplitString(data);
+
+            // Variáveis que armazenam os dados
+            String sv_comp, scomp_i, s_alfa, sv_tempo;
+
+            // Previne que ocorram erros
+            try{
+                sv_comp = split[0];
+            }
+            catch(IndexOutOfBoundsException e){
+                sv_comp = "";
+            }
+
+            try{
+                scomp_i = split[1];
+            }
+            catch(IndexOutOfBoundsException e){
+                scomp_i = "";
+            }
+
+            try{
+                s_alfa = split[2];
+            }
+            catch(IndexOutOfBoundsException e){
+                s_alfa = "";
+            }
+
+            try{
+                sv_tempo = split[3];
+            }
+            catch(IndexOutOfBoundsException e){
+                sv_tempo = "";
+            }
+
+            // Preenche os edittexts com os respectivos valores
+            v_comp.setText(sv_comp);
+            comp_i.setText(scomp_i);
+            alfa.setText(s_alfa);
+            v_tempo.setText(sv_tempo);
+
+            // Executa o calculo
+            solve();
+        }
+
         // Cria um listener para o botão calcular
         calcular.setOnClickListener(new View.OnClickListener() {
             @Override

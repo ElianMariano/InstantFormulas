@@ -158,7 +158,7 @@ public class HistoricoItem extends FrameLayout {
                         if (view.getX() > 350 || view.getX() < -350){
                             item_delete();
                         }
-                        else if (view.getX() == 0.0f){
+                        else if (view.getX() > -10 && view.getX() < 10){
                             init_activity();
                         }
                         else {

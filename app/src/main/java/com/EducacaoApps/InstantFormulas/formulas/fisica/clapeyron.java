@@ -10,14 +10,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.EducacaoApps.InstantFormulas.ConvertStringtoData;
 import com.EducacaoApps.InstantFormulas.ItensLibrary.EmptyFragment;
 import com.EducacaoApps.InstantFormulas.ItensLibrary.TudoPreenchido;
 import com.EducacaoApps.InstantFormulas.Models.HistoricoHelper;
 import com.EducacaoApps.InstantFormulas.form_choose;
 import com.EducacaoApps.InstantFormulas.formulas.R;
-
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
@@ -59,6 +57,68 @@ public class clapeyron extends AppCompatActivity {
 
         // Define hasIntent como false
         hasIntent = false;
+
+        // Obtêm o intent
+        Intent in = getIntent();
+        // Variável que armazena os dados
+        String data = in.getStringExtra("data");
+
+        if (data != null){
+            // Define hasIntent como true
+            hasIntent = true;
+
+            // Obtêm os valores e armazena dentro da variável
+            String[] split = ConvertStringtoData.SplitString(data);
+
+            // Variáveis que armazenam os dados
+            String sp, sv, sn, sr, st;
+
+            // Previne que ocorram erros
+            try{
+                sp = split[0];
+            }
+            catch(IndexOutOfBoundsException e){
+                sp = "";
+            }
+
+            try{
+                sv = split[1];
+            }
+            catch(IndexOutOfBoundsException e){
+                sv = "";
+            }
+
+            try{
+                sn = split[2];
+            }
+            catch(IndexOutOfBoundsException e){
+                sn = "";
+            }
+
+            try{
+                sr = split[3];
+            }
+            catch(IndexOutOfBoundsException e){
+                sr = "";
+            }
+
+            try{
+                st = split[4];
+            }
+            catch(IndexOutOfBoundsException e){
+                st = "";
+            }
+
+            // Preenche os edittexts com os respectivos valores
+            p.setText(sp);
+            V.setText(sv);
+            n.setText(sn);
+            r.setText(sr);
+            T.setText(st);
+
+            // Executa o calculo
+            solve();
+        }
 
         // Cria um listener para o botão calcular
         calcular.setOnClickListener(new View.OnClickListener() {

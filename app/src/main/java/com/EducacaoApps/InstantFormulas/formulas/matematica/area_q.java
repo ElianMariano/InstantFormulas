@@ -36,13 +36,13 @@ public class area_q extends AppCompatActivity {
         setContentView(R.layout.activity_area_q);
 
         // Declara o valor das variáveis
-        calcular = (Button) findViewById(R.id.calcular);
-        num1 = (EditText) findViewById(R.id.num1);
-        num2 = (EditText) findViewById(R.id.num2);
-        num3 = (EditText) findViewById(R.id.num3);
-        line1 = (TextView) findViewById(R.id.line1);
-        line2 = (TextView) findViewById(R.id.line2);
-        line3 = (TextView) findViewById(R.id.line3);
+        calcular = findViewById(R.id.calcular);
+        num1 = findViewById(R.id.num1);
+        num2 = findViewById(R.id.num2);
+        num3 = findViewById(R.id.num3);
+        line1 = findViewById(R.id.line1);
+        line2 = findViewById(R.id.line2);
+        line3 = findViewById(R.id.line3);
 
         // Declara o valor de isDone como false
         isDone = false;

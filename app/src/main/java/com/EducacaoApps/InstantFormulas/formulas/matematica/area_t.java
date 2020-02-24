@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.EducacaoApps.InstantFormulas.ConvertStringtoData;
 import com.EducacaoApps.InstantFormulas.Models.HistoricoHelper;
 import com.EducacaoApps.InstantFormulas.ItensLibrary.EmptyFragment;
@@ -19,7 +18,7 @@ import com.EducacaoApps.InstantFormulas.form_choose;
 import com.EducacaoApps.InstantFormulas.formulas.R;
 
 public class area_t extends AppCompatActivity {
-    // VAriáveis que armazenam os itens que serão utilizados
+    // Variáveis que armazenam os itens que serão utilizados
     private EditText area;
     private EditText base;
     private EditText altura;
@@ -92,7 +91,7 @@ public class area_t extends AppCompatActivity {
             }
 
             try{
-                s_altura = split[0];
+                s_altura = split[2];
             }
             catch(IndexOutOfBoundsException e){
                 s_altura = "";

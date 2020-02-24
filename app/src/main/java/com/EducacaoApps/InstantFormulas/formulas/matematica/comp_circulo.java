@@ -34,24 +34,59 @@ public class comp_circulo extends AppCompatActivity {
     private final Double PI = 3.14;
     private boolean hasIntent;
 
-    // TODO Consertar o erro ao calcular o raio do circulo
-
-    // TODO Criar um botão para definir o valor de pi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comp_circulo);
 
         // Referencia os itens que serão utilizados
-        comprimento = (EditText) findViewById(R.id.comprimento);
-        raio = (EditText) findViewById(R.id.raio);
-        line1 = (TextView) findViewById(R.id.line1);
-        line2 = (TextView) findViewById(R.id.line2);
-        line3 = (TextView) findViewById(R.id.line3);
-        calcular = (Button) findViewById(R.id.calcular);
+        comprimento = findViewById(R.id.comprimento);
+        raio = findViewById(R.id.raio);
+        line1 = findViewById(R.id.line1);
+        line2 = findViewById(R.id.line2);
+        line3 = findViewById(R.id.line3);
+        calcular = findViewById(R.id.calcular);
 
         // Define hasIntent como false
         hasIntent = false;
+
+        // Obtêm o intent
+        Intent in = getIntent();
+        // Variável que armazena os dados
+        String data = in.getStringExtra("data");
+
+        if (data != null){
+            // Define hasIntent como true
+            hasIntent = true;
+
+            // Obtêm os valores e armazena dentro da variável
+            String[] split = ConvertStringtoData.SplitString(data);
+
+            // Variáveis que armazenam os dados
+            String s_comp, s_raio;
+
+            // Previne que ocorram erros
+            try{
+                s_comp = split[0];
+            }
+            catch(IndexOutOfBoundsException e){
+                s_comp = "";
+            }
+
+            try{
+                s_raio = split[1];
+            }
+            catch(IndexOutOfBoundsException e){
+                s_raio = "";
+            }
+
+            // Preenche os edittexts com os respectivos valores
+            comprimento.setText(s_comp);
+            raio.setText(s_raio);
+
+            // Executa o calculo
+            solve();
+        }
 
         // Define o valor de isDone como false
         isDone = false;
@@ -107,7 +142,7 @@ public class comp_circulo extends AppCompatActivity {
 
             if (!hasIntent){
                 // Variáveis que obtem os dados
-                Double[] dn = new Double[3];
+                Double[] dn = new Double[2];
                 dn[0] = null;
                 dn[1] = Dnum2;
 
@@ -144,9 +179,9 @@ public class comp_circulo extends AppCompatActivity {
 
             if (!hasIntent){
                 // Variáveis que obtem os dados
-                Double[] dn = new Double[3];
-                dn[0] = null;
-                dn[1] = Dnum2;
+                Double[] dn = new Double[2];
+                dn[0] = Dnum1;
+                dn[1] = null;
 
                 // String que armazena o dado convertido
                 String data = ConvertStringtoData.DataToString(dn);
