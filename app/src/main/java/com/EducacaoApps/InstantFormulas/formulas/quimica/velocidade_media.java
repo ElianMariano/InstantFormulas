@@ -343,23 +343,16 @@ public class velocidade_media extends AppCompatActivity {
                 line7.setVisibility(VISIBLE);
                 line8.setVisibility(VISIBLE);
 
-                // TODO Erro: Última linha fica no final da tela
-                line.setText(String.valueOf(d_vm) + " = " + String.valueOf(d_cf) + " - " +
-                        String.valueOf(d_ci) + "/Tf - " + String.valueOf(d_ti));
-                line2.setText(String.valueOf(d_vm) + " = " + String.format("%.2f", d_cf - d_ci) +
-                        "/Tf - " + String.valueOf(d_ti));
-                line3.setText(String.format("%.2f", d_cf - d_ci) + " = " + String.valueOf(d_vm) +
-                        " * (Tf - " + String.valueOf(d_ti) + ")");
-                line4.setText(String.format("%.2f", d_cf - d_ci) + " = " + String.valueOf(d_vm) +
-                        " * Tf - " + String.valueOf(d_vm) + " * " + String.valueOf(d_ti));
-                line5.setText(String.format("%.2f", d_cf - d_ci) + " = " + String.valueOf(d_vm) +
-                        " * Tf - " + String.format("%.2f", d_vm * d_ti));
-                line6.setText(String.valueOf(d_vm) + " * Tf = " +
-                        String.format("%.2f", (d_cf - d_ci) + d_vm * d_ti));
-                line7.setText("Tf = " + String.format("%.2f", (d_cf - d_ci) + d_vm * d_ti) + "/" +
-                        String.valueOf(d_vm));
-                line8.setText("Tf = " + String.format("%.2f", ((d_cf - d_ci) + d_vm * d_ti)
-                        / d_vm));
+                line.setText(String.format("%f = %f - %f/Tf - %f", d_vm, d_cf, d_ci, d_ti));
+                line2.setText(String.format("%f = %f /Tf - %f", d_vm, (d_cf - d_ci), d_ti));
+                line3.setText(String.format("%.2f = * (Tf - %f)", (d_cf - d_ci), d_vm, d_ti));
+                line4.setText(String.format("%.2f = %f * Tf - %f * %f", (d_cf - d_ci), d_vm, d_vm,
+                        d_ti));
+                line5.setText(String.format("%.2f = %f * Tf - %f", (d_cf - d_ci), d_vm,
+                        (d_vm*d_ti)));
+                line6.setText(String.format("%f * Tf = %.2f", d_vm, ((d_cf - d_ci) + d_vm*d_ti)));
+                line7.setText(String.format("Tf = %.2f / %f", ((d_cf - d_ci) + d_vm * d_ti), d_vm));
+                line8.setText(String.format("Tf = %.2f", ((d_cf - d_ci) + d_vm * d_ti) / d_vm));
 
                 // Define o estilo do botão calcular
                 calcular.setText(R.string.limpar);
@@ -402,14 +395,12 @@ public class velocidade_media extends AppCompatActivity {
                 line7.setVisibility(VISIBLE);
                 line8.setVisibility(VISIBLE);
 
-                // TODO Erro: Última linha fica no final da tela
                 line.setText(String.valueOf(d_vm) + " = " + String.valueOf(d_cf) + " - " +
                         String.valueOf(d_ci) + "/" + String.valueOf(d_tf) + " - Ti");
                 line2.setText(String.valueOf(d_vm) + " = " + String.format("%.2f", d_cf - d_ci)
                         + "/" + String.valueOf(d_tf) + " - Ti");
                 line3.setText(String.format("%.2f", d_cf - d_ci) + " = " + String.valueOf(d_vm) +
                         " * (" + String.valueOf(d_tf) + " - Ti)");
-                // TODO Verificar se o calculo esta correto e se funciona caso a variável d_vm for negativa
                 line4.setText(String.format("%.2f", d_cf - d_ci) + " = " +
                         String.format("%.2f", d_vm * d_tf) + " - " + String.valueOf(d_vm)
                         + " * Ti");
@@ -419,8 +410,7 @@ public class velocidade_media extends AppCompatActivity {
                         String.format("%.2f", (d_vm * d_tf) - (d_cf - d_ci)));
                 line7.setText("Ti = " + String.format("%.2f", (d_vm * d_tf) - (d_cf - d_ci)) + "/"
                         + String.valueOf(d_vm));
-                line8.setText("Ti = " + String.format("%.2f", ((d_vm * d_tf)
-                        - (d_cf - d_ci) / d_vm)));
+                line8.setText("Ti = " + String.format("%.2f", (((d_vm * d_tf) - (d_cf - d_ci)) / d_vm)));
 
                 // Define o estilo do botão calcular
                 calcular.setText(R.string.limpar);

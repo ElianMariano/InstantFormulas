@@ -21,7 +21,6 @@ import com.EducacaoApps.InstantFormulas.formulas.R;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
-// TODO Consertar o erro de calculo ocorrido quando o ultimo dado não esta preenchido
 public class velo_media extends AppCompatActivity {
     private EditText velocidade;
     private EditText distancia;
