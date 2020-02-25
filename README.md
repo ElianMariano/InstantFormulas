@@ -1,9 +1,9 @@
-# Aplicativo-de-Formulas
+# InstantFormulas
 
 ### Descrição ###
 
-Aplicativo que resolve formulas matemáticas, químicas e físicas.
-Cada fómula é resolvida de maneira que a incógnita seja encontrada, portanto um problema pode ser resolvido de várias maneiras diferentes por uma mesma fórmula.
+InstantFormulas é um aplicativo que resolve formulas matemáticas, químicas e físicas. O objetivo do aplicativo é mostrar o resultados para cada formula de maneira dinâmica e intuitiva, a fim de que o usuário consiga rapidamente entender o raciocínio de cada formula, e possa aplicá-las no seu cotidiano como estudante.
+Cada fómula é resolvida de maneira que o valor da incógnita seja sempre encontrado, portanto um problema pode ser resolvido de várias maneiras diferentes por uma mesma fórmula.
 
 ### Imagens do Aplicativo ###
 
