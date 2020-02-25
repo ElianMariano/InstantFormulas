@@ -21,7 +21,6 @@ import com.EducacaoApps.InstantFormulas.formulas.R;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
-// TODO Valores para testar: 2 = 20 - 10 / 10 - 5
 public class velocidade_media extends AppCompatActivity {
     private EditText vm;
     private EditText cf;

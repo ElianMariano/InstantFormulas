@@ -241,7 +241,6 @@ public class equa_torricelli extends AppCompatActivity {
                         String.valueOf(dd);
                 l2 = String.valueOf(dv) + "² = Vo² + " + String.format("%.2f", da * 2) + " * " +
                         String.valueOf(dd);
-
                 l3 = String.format("%.2f", dv * dv) + " = Vo² + " + String.format("%.2f", 2 * da * dd);
                 l4 = "Vo² = " + String.format("%.2f", dv * dv) + " - " +
                         String.format("%.2f", 2 * da * dd);
