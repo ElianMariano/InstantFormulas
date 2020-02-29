@@ -35,7 +35,7 @@
     <string name="preenchido">All fields are filled</string>
     <string name="clapeyron">Clapeyron\'s equation</string>
     <string name="equa_calorimetria">Calorimetry\'s fundamental equations</string>
-    <string name="densideDes">Calculates the density of the solution</string>
+    <string name="densidadeDes">Calculates the density of the solution</string>
     <string name="densidadeFor">d = m/v</string>
     <string name="pitagorasFor">h² = c² + c²</string>
     <string name="comp_circuloFor">C = 2.π.r</string>
@@ -44,7 +44,7 @@
     <string name="area_qFor">a = b * h</string>
     <string name="area_tFor">a = b * h/2</string>
     <string name="velocidade_mediaFor">Vm = Cf - Ci/tf - ti</string>
-    <string name="variação_entalpiaFor">ΔH = Tf - Ti</string>
+    <string name="variacao_entalpiaFor">ΔH = Tf - Ti</string>
     <string name="energia_ativacaoFor">Eat = Ep - Er</string>
     <string name="dilat_linearFor">ΔL = Li.α.ΔT</string>
     <string name="calc_config">Show the explaining</string>
@@ -68,7 +68,7 @@
     <string name="dilat_linear">Linear thermal expasion</string>
     <string name="dilat_linearDes">Calculates the linear thermal expasion</string>
     <string name="energia_ativacao">Activation energy</string>
-    <string name="energia_atvacaoDes">Calculates the activation energy</string>
+    <string name="energia_ativacaoDes">Calculates the activation energy</string>
     <string name="equa_calorimetriaDes">Calculates the amount of sensitive  heat</string>
     <string name="equa_torricelli">Torricelli\'s equation</string>
     <string name="pitagoras">Pythagorean theorem</string>

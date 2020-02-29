@@ -76,7 +76,7 @@ public class form_choose extends AppCompatActivity {
         */
 
         final CheckItem densidade = new CheckItem(this, Formulas.DENSIDADE, R.string.densidade,
-                R.string.densidadeFor, R.string.densideDes);
+                R.string.densidadeFor, R.string.densidadeDes);
         ex.addQui(densidade);
 
         final CheckItem velocidade_media = new CheckItem(this,
@@ -85,13 +85,13 @@ public class form_choose extends AppCompatActivity {
         ex.addQui(velocidade_media);
 
         final CheckItem variacao_entalpia = new CheckItem(this, Formulas.VARIACAO_ENTALPIA,
-                R.string.variacao_entalpia, R.string.variação_entalpiaFor,
+                R.string.variacao_entalpia, R.string.variacao_entalpiaFor,
                 R.string.variacao_entalpiaDes);
         ex.addQui(variacao_entalpia);
 
         final CheckItem energia_ativacao = new CheckItem(this, Formulas.ENERGIA_ATIVACAO,
                 R.string.energia_ativacao, R.string.energia_ativacaoFor,
-                R.string.energia_atvacaoDes);
+                R.string.energia_ativacaoDes);
         ex.addQui(energia_ativacao);
 
         /*

@@ -61,16 +61,16 @@
     <!--QUÍMICA-->
     <string name="densidade">Densidade</string>
     <string name="densidadeFor">d = m/v</string>
-    <string name="densideDes">Calcula a densidade de uma solução</string>
+    <string name="densidadeDes">Calcula a densidade de uma solução</string>
     <string name="velocidade_media">Velocidade média de uma reação</string>
     <string name="velocidade_mediaFor">Vm = Cf - Ci/tf - ti</string>
     <string name="velocidade_mediaDes">Calcula a velocidade média de uma reação</string>
     <string name="variacao_entalpia">Variação da entalpia</string>
-    <string name="variação_entalpiaFor">"Δ"H = Tf - Ti</string>
+    <string name="variacao_entalpiaFor">"Δ"H = Tf - Ti</string>
     <string name="variacao_entalpiaDes">Calcula a variação da entalpia de uma reação</string>
     <string name="energia_ativacao">Energia de ativação</string>
     <string name="energia_ativacaoFor">Eat = Ep - Er</string>
-    <string name="energia_atvacaoDes">Calcula a energia de ativação de uma reação</string>
+    <string name="energia_ativacaoDes">Calcula a energia de ativação de uma reação</string>
     <!--FÍSICA-->
     <string name="dilat_linear">Dilatação térmica linear</string>
     <string name="dilat_linearFor">"Δ"L = Li."α"."Δ"T</string>
