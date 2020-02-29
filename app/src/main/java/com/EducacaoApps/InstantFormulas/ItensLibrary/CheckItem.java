@@ -4,8 +4,10 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.ContentValues;
+import android.content.Context;
 import android.os.Build;
 import androidx.appcompat.app.AppCompatActivity;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +20,6 @@ import com.EducacaoApps.InstantFormulas.Formulas;
 import com.EducacaoApps.InstantFormulas.StartFormula;
 import com.EducacaoApps.InstantFormulas.formulas.R;
 import java.util.List;
-
 import static androidx.core.content.res.ResourcesCompat.getDrawable;
 
 //Procurar o erro nos metodos expand e desExpand
@@ -47,6 +48,10 @@ public class CheckItem extends LinearLayout implements View.OnClickListener{
     private AppCompatActivity activity;
     // Referências para os textos utilizados na activity
     private int tit, form, desc;
+    // Verifica se houve inicialização com programaticamente ou através do layout XML
+    private boolean isXML;
+    // Os textos utilizados no CheckItem [TitleEx, formula, description]
+    private String title_ex, formula, description;
 
     // Construtor que inicializa todos os itns de uma vez
     public CheckItem(AppCompatActivity app, Formulas fm, int title, int formula,
@@ -61,6 +66,9 @@ public class CheckItem extends LinearLayout implements View.OnClickListener{
         tit = title;
         form = formula;
         desc = description;
+
+        // Define isXML como false
+        isXML = false;
 
         //Inicia a classe
         init();
@@ -78,7 +86,36 @@ public class CheckItem extends LinearLayout implements View.OnClickListener{
         tit = title;
         desc = description;
 
+        // Define isXML como false
+        isXML = false;
+
         //Inicia a classe
+        init();
+    }
+
+    // Construtor que inicializa através dos atributos XML
+    public CheckItem(Context context, AttributeSet attrs){
+        super(context, attrs);
+
+        // Define isXML como true
+        isXML = true;
+
+        // Define os atributos de textos do layout
+        title_ex = attrs.getAttributeValue("http://www.EducacaoApps.com", "TitleEx");
+        formula = attrs.getAttributeValue("http://www.EducacaoApps.com", "Formula");
+        description = attrs.getAttributeValue("http://www.EducacaoApps.com", "Description");
+
+        // Verifica se os textos obtidos vêm de uma string resource
+        if (title_ex.contains("@"))
+            title_ex = getResources().getString(Integer.parseInt(title_ex.substring(1)));
+
+        if (formula.contains("@"))
+            formula = getResources().getString(Integer.parseInt(formula.substring(1)));
+
+        if (description.contains("@"))
+            description = getResources().getString(Integer.parseInt(description.substring(1)));
+
+        // Inicia a classe
         init();
     }
 
@@ -107,7 +144,7 @@ public class CheckItem extends LinearLayout implements View.OnClickListener{
         Favorit.setOnClickListener(this);
 
         //Definição so parametros do textview título
-        TitleEx = (Button) Itens.findViewById(R.id.TitleEx);
+        TitleEx = Itens.findViewById(R.id.TitleEx);
         //OnClick separado porque o outro não é executado
         TitleEx.setOnClickListener(new OnClickListener() {
             @Override
@@ -124,27 +161,36 @@ public class CheckItem extends LinearLayout implements View.OnClickListener{
         });
 
         //Definição dos parametros da formula
-        Formula = (TextView) Itens.findViewById(R.id.Formula);
+        Formula = Itens.findViewById(R.id.Formula);
         Formula.setAlpha(0.0f);
 
         //Definição dos parametros da descrição
         Description = (TextView) Itens.findViewById(R.id.Description);
         Description.setAlpha(0.0f);
 
-        // Preenche os dados de acordo com os textos
-        setTitleEx(getResources().getString(tit));
+        if (!isXML){
+            // Preenche os dados de acordo com os textos
+            setTitleEx(getResources().getString(tit));
 
-        try{
-            setFormula(getResources().getString(form));
+            try{
+                setFormula(getResources().getString(form));
+            }
+            catch (Exception e){
+                Log.d("CheckItem", e.getMessage());
+            }
+
+            setDescription(getResources().getString(desc));
         }
-        catch (Exception e){
-            Log.d("CheckItem", e.getMessage());
+        else{
+            setTitleEx(title_ex);
+
+            if (formula.isEmpty())
+                Formula.setVisibility(GONE);
+            else
+                setFormula(formula);
+
+            setDescription(description);
         }
-
-        setDescription(getResources().getString(desc));
-
-        // Verifica no banco de dados se o item é favorito ou não, então o define de acordo com o
-        // resultado
 
         // Instancia do banco de dados
         FavoritesHelper fh = new FavoritesHelper(getContext());
@@ -167,6 +213,20 @@ public class CheckItem extends LinearLayout implements View.OnClickListener{
 
         //Adiciona dentro do layout
         addView(Itens);
+    }
+
+    // Verifica se o item esta favorito no banco de dados
+    public void verifyChecked(){
+        // Instancia do banco de dados
+        FavoritesHelper fh = new FavoritesHelper(getContext());
+
+        // Lista definida de acordo com o resultados do banco de dados
+        List<ContentValues> lista = fh.pesquisar(this.getTitleEx());
+
+        if (!lista.isEmpty())
+            setChecked(true);
+        else
+            setChecked(false);
     }
 
     /*
@@ -375,6 +435,11 @@ public class CheckItem extends LinearLayout implements View.OnClickListener{
                         bottom.setVisibility(GONE);
                     }
                 });
+    }
+
+    // Adiciona a activity que sera iniciada
+    public void add_activity(AppCompatActivity act){
+        activity = act;
     }
 
     // Função Do que é iniciada a activity de acordo com o parâmetro recebido no contrutor
