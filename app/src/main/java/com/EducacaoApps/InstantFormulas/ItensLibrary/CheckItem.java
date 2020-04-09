@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.EducacaoApps.InstantFormulas.Models.FavoritesHelper;
 import com.EducacaoApps.InstantFormulas.Formulas;
 import com.EducacaoApps.InstantFormulas.StartFormula;
+import com.EducacaoApps.InstantFormulas.StartFormulaByString;
 import com.EducacaoApps.InstantFormulas.formulas.R;
 import java.util.List;
 import static androidx.core.content.res.ResourcesCompat.getDrawable;
@@ -61,6 +62,43 @@ public class CheckItem extends LinearLayout implements View.OnClickListener{
         // Declara a variável activity e formulas
         activity = app;
         formulas = fm;
+
+        //Define os dados do item
+        tit = title;
+        form = formula;
+        desc = description;
+
+        // Define isXML como false
+        isXML = false;
+
+        //Inicia a classe
+        init();
+    }
+
+    public CheckItem(AppCompatActivity app){
+        super(app);
+
+        // Declara a variável activity e formulas
+        activity = app;
+
+        //Define os dados do item
+        setTitleEx("");
+        setFormula("");
+        setDescription("");
+
+        // Define isXML como false
+        isXML = false;
+
+        //Inicia a classe
+        init();
+    }
+
+    public CheckItem(AppCompatActivity app, int title, int formula,
+                     int description){
+        super(app);
+
+        // Declara a variável activity e formulas
+        activity = app;
 
         //Define os dados do item
         tit = title;
@@ -444,7 +482,6 @@ public class CheckItem extends LinearLayout implements View.OnClickListener{
 
     // Função Do que é iniciada a activity de acordo com o parâmetro recebido no contrutor
     public void Do(Formulas fm){
-        StartFormula st = new StartFormula(activity, fm);
-        st.StartActivity();
+        StartFormulaByString.Start(activity, getTitleEx());
     }
 }

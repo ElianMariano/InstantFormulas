@@ -29,6 +29,26 @@ public class ConvertStringtoData {
         return convert;
     }
 
+    // Converte uma string em um dado separado
+    public static String StringToDataString(String[] data){
+        // Variável que armazena o dado convertido
+        String convert = "";
+
+        // Adiciona cada valor na String
+        for(int i = 0;i < data.length; i++){
+            if (data[i] != null){
+                convert += data[i];
+            }
+            else{
+                convert += "N";
+            }
+
+            convert += "-";
+        }
+
+        return convert;
+    }
+
     // Método somente usado pela formula regra_de_tres
     public static List<Double> StringToData(String data){
         // Variável que armazena os valores

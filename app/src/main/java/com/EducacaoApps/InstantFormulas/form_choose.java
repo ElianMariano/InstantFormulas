@@ -4,23 +4,29 @@ import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ExpandableListView;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
+import com.EducacaoApps.InstantFormulas.ItensLibrary.ExpandableListViewAdapter;
 import com.EducacaoApps.InstantFormulas.formulas.R;
 
 import com.EducacaoApps.InstantFormulas.ItensLibrary.CheckItem;
-import com.EducacaoApps.InstantFormulas.ItensLibrary.ExpandView;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 // TODO Aumentar o desenpenho desta actvity
 public class form_choose extends AppCompatActivity {
-    //Cria um ExpandView
-    private ExpandView ex;
+    private ExpandableListView ExpandList;
+    private ExpandableListViewAdapter expandableListViewAdapter;
+    private List<String> listDataGroup;
+    private HashMap<String, List<String>> listDataChild;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //Layout para fazer sua referencia
-        ScrollView ScrV;
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_choose);
 
@@ -28,16 +34,78 @@ public class form_choose extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        //Obtém referencia do layout
-        ScrV = findViewById(R.id.ScrollForms);
+        // Incializa a ExpandList
+        ExpandList = findViewById(R.id.ExpandList);
 
-        //Cria um lista expandivel
-        ex = new ExpandView(this);
+        // Inicializa os objetos
+        initObjects();
 
-        build();
+        // Inicializa os listeners
+        initListeners();
 
-        //Adiciona o item no layout
-        ScrV.addView(ex);
+        // Prepara os dados da lista
+        initListData();
+    }
+
+    void initListeners(){
+        ExpandList.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView expandableListView,
+                                        View view, int i, long l) {
+                if (expandableListView.isGroupExpanded(i))
+                    expandableListView.expandGroup(i);
+                else
+                    expandableListView.collapseGroup(i);
+
+                return false;
+            }
+        });
+
+        ExpandList.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView expandableListView, View view,
+                                        int i, int i1, long l) {
+                Toast.makeText(
+                        getApplicationContext(),
+                        listDataGroup.get(i)
+                                + " : "
+                                + listDataChild.get(
+                                listDataGroup.get(i)).get(
+                                i1), Toast.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+        });
+    }
+
+    void initObjects(){
+        // initializing the list of groups
+        listDataGroup = new ArrayList<>();
+
+        // initializing the list of child
+        listDataChild = new HashMap<>();
+
+        // initializing the adapter object
+        expandableListViewAdapter = new ExpandableListViewAdapter(this, listDataGroup, listDataChild);
+
+        // setting list adapter
+        ExpandList.setAdapter(expandableListViewAdapter);
+    }
+
+    void initListData(){
+        // Adiciona os dados do grupo
+        listDataGroup.add(getString(R.string.mat));
+        listDataGroup.add(getString(R.string.qui));
+        listDataGroup.add(getString(R.string.Fis));
+
+        List<String> matematica = new ArrayList<>();
+        matematica.add(ConvertStringtoData.StringToDataString(
+                new String[]{getString(R.string.regra_de_tres), "",
+                        getString(R.string.regra_de_tresDes) }));
+
+        listDataChild.put(listDataGroup.get(0), matematica);
+
+        expandableListViewAdapter.notifyDataSetChanged();
     }
 
     //Não definir coprimento para os itens
@@ -48,6 +116,7 @@ public class form_choose extends AppCompatActivity {
                     GRUPO MATEMÁTICA
         --------------------------------------
          */
+        /*
         final CheckItem regra_tres = new CheckItem(this, Formulas.REGRA_TRES,
                 R.string.regra_de_tres, R.string.regra_de_tresDes);
         ex.addMat(regra_tres);
@@ -68,6 +137,7 @@ public class form_choose extends AppCompatActivity {
         final CheckItem pitagoras = new CheckItem(this, Formulas.PITAGORAS, R.string.pitagoras,
                 R.string.pitagorasFor, R.string.pitagorasDes);
         ex.addMat(pitagoras);
+         */
 
         /*
         ------------------------------------------
@@ -75,6 +145,7 @@ public class form_choose extends AppCompatActivity {
         ------------------------------------------
         */
 
+        /*
         final CheckItem densidade = new CheckItem(this, Formulas.DENSIDADE, R.string.densidade,
                 R.string.densidadeFor, R.string.densidadeDes);
         ex.addQui(densidade);
@@ -93,13 +164,14 @@ public class form_choose extends AppCompatActivity {
                 R.string.energia_ativacao, R.string.energia_ativacaoFor,
                 R.string.energia_ativacaoDes);
         ex.addQui(energia_ativacao);
+         */
 
         /*
         ------------------------------------------
                       GRUPO FÍSICA
         ------------------------------------------
         */
-
+        /*
         final CheckItem dilat_linear = new CheckItem(this, Formulas.DILATACAO_LINEAR,
                 R.string.dilat_linear, R.string.dilat_linearFor, R.string.dilat_linearDes);
         ex.addFis(dilat_linear);
@@ -124,6 +196,7 @@ public class form_choose extends AppCompatActivity {
         final CheckItem clapeyron = new CheckItem(this, Formulas.CLAPEYRON, R.string.clapeyron,
                  R.string.clapeyronFor, R.string.clapeyronDes);
         ex.addFis(clapeyron);
+         */
     }
 
     @Override

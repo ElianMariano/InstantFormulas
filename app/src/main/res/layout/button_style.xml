@@ -3,8 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="50dp"
     android:background="@drawable/button_round"
-    android:textAlignment="center"
+    android:layout_gravity="center"
     android:textColor="#ffffff"
-    android:textStyle="bold">
+    android:textStyle="bold"
+    android:focusable="false">
 
 </Button>
