@@ -1,5 +1,9 @@
 package com.EducacaoApps.InstantFormulas.ItensLibrary;
 
+import android.content.Context;
+import android.graphics.Typeface;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
@@ -7,20 +11,23 @@ import android.widget.BaseExpandableListAdapter;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.EducacaoApps.InstantFormulas.ConvertStringtoData;
+import com.EducacaoApps.InstantFormulas.formulas.R;
 
 import java.util.HashMap;
 import java.util.List;
 
 public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
-    private AppCompatActivity app;
+    private Context context;
     private List<String> listDataGroup;
     private HashMap<String, List<String>> listDataChild;
+    private LayoutInflater inflater;
 
-    public ExpandableListViewAdapter(AppCompatActivity app, List<String> listDataGroup,
+    public ExpandableListViewAdapter(Context context, List<String> listDataGroup,
                                      HashMap<String, List<String>> listDataChild){
-        this.app = app;
+        this.context = context;
         this.listDataGroup = listDataGroup;
         this.listDataChild = listDataChild;
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -30,8 +37,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int i) {
-        return this.listDataChild.get(this.listDataGroup.get(i))
-                .size();
+        return listDataChild.get(listDataGroup.get(i)).size();
     }
 
     @Override
@@ -63,11 +69,19 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
         String headerTitle = (String) getGroup(i);
+        GroupButton group;
 
-        GroupButton button = new GroupButton(app);
-        button.setText(headerTitle);
+        if (view == null) {
+            view = inflater.inflate(R.layout.expandable_group, null);
 
-        view = button;
+            group = view.findViewById(R.id.group);
+            view.setTag(group);
+        }
+        else{
+            group = view.findViewById(R.id.group);
+        }
+
+        group.setText(headerTitle);
 
         return view;
     }
@@ -75,20 +89,28 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
         final String childText = (String) getChild(i, i1);
+        CheckItem checkItem;
 
         String[] data = ConvertStringtoData.SplitString(childText);
 
-        CheckItem checkItem = new CheckItem(app);
+        if (view == null){
+            view = inflater.inflate(R.layout.expandable_child, null);
+
+            checkItem = view.findViewById(R.id.checkitem);
+            view.findViewById(R.id.checkitem);
+        }
+        else{
+            checkItem = view.findViewById(R.id.checkitem);
+        }
+
         checkItem.setTitleEx(data[0]);
 
         if (!data[1].isEmpty())
             checkItem.setFormula(data[1]);
         else
-            checkItem.setFormula(null);
+            checkItem.setFormula("");
 
         checkItem.setDescription(data[2]);
-
-        view = checkItem;
 
         return view;
     }

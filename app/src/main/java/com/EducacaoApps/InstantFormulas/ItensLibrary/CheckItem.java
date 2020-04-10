@@ -93,6 +93,21 @@ public class CheckItem extends LinearLayout implements View.OnClickListener{
         init();
     }
 
+    public CheckItem(Context context){
+        super(context);
+
+        //Define os dados do item
+        setTitleEx("");
+        setFormula("");
+        setDescription("");
+
+        // Define isXML como false
+        isXML = false;
+
+        //Inicia a classe
+        init();
+    }
+
     public CheckItem(AppCompatActivity app, int title, int formula,
                      int description){
         super(app);

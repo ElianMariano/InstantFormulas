@@ -26,11 +26,13 @@ public class GroupButton extends AppCompatButton {
 
         text = attributeSet.getAttributeValue("http://www.EducacaoApps.com", "text");
 
-        if (text.contains("@"))
-            text = getResources().getString(Integer.parseInt(text.substring(1)));
+        if (text != null){
+            if (text.contains("@"))
+                text = getResources().getString(Integer.parseInt(text.substring(1)));
 
-        // Define o texto do botão
-        setText(text);
+            // Define o texto do botão
+            setText(text);
+        }
 
         init();
     }

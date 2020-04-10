@@ -3,6 +3,7 @@ package com.EducacaoApps.InstantFormulas;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
@@ -86,7 +87,8 @@ public class form_choose extends AppCompatActivity {
         listDataChild = new HashMap<>();
 
         // initializing the adapter object
-        expandableListViewAdapter = new ExpandableListViewAdapter(this, listDataGroup, listDataChild);
+        expandableListViewAdapter = new ExpandableListViewAdapter(this, listDataGroup,
+                listDataChild);
 
         // setting list adapter
         ExpandList.setAdapter(expandableListViewAdapter);

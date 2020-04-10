@@ -7,8 +7,7 @@
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
     android:layout_marginTop="5dp"
-    android:orientation="vertical"
-    android:focusable="false">
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/top"
