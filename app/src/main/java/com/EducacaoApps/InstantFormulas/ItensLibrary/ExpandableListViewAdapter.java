@@ -8,8 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.EducacaoApps.InstantFormulas.ConvertStringtoData;
 import com.EducacaoApps.InstantFormulas.formulas.R;
 
@@ -32,7 +30,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getGroupCount() {
-        return this.listDataGroup.size();
+        return listDataGroup.size();
     }
 
     @Override
@@ -42,12 +40,12 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getGroup(int i) {
-        return this.listDataGroup.get(i);
+        return listDataGroup.get(i);
     }
 
     @Override
     public Object getChild(int i, int i1) {
-        return this.listDataChild.get(this.listDataGroup.get(i))
+        return listDataChild.get(listDataGroup.get(i))
                 .get(i1);
     }
 
@@ -89,19 +87,13 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
         final String childText = (String) getChild(i, i1);
-        CheckItem checkItem;
+        CheckItem checkItem = new CheckItem(context);
 
         String[] data = ConvertStringtoData.SplitString(childText);
 
-        if (view == null){
-            view = inflater.inflate(R.layout.expandable_child, null);
-
-            checkItem = view.findViewById(R.id.checkitem);
-            view.findViewById(R.id.checkitem);
-        }
-        else{
-            checkItem = view.findViewById(R.id.checkitem);
-        }
+        Log.e("Adapter", String.format("0: %s", data[0]));
+        Log.e("Adapter", String.format("1: %s", data[1]));
+        Log.e("Adapter", String.format("2: %s", data[2]));
 
         checkItem.setTitleEx(data[0]);
 
@@ -111,6 +103,9 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
             checkItem.setFormula("");
 
         checkItem.setDescription(data[2]);
+
+        if (view == null)
+            view = checkItem;
 
         return view;
     }

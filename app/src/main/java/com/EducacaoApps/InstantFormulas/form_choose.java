@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.ScrollView;
 import android.widget.Toast;
@@ -38,14 +39,11 @@ public class form_choose extends AppCompatActivity {
         // Incializa a ExpandList
         ExpandList = findViewById(R.id.ExpandList);
 
-        // Inicializa os objetos
-        initObjects();
-
         // Inicializa os listeners
         initListeners();
 
         // Prepara os dados da lista
-        initListData();
+        initData();
     }
 
     void initListeners(){
@@ -79,22 +77,33 @@ public class form_choose extends AppCompatActivity {
         });
     }
 
-    void initObjects(){
+    private void calculateHeight(){
+        // Calcula a altura do ExpandableListView
+        float density = getResources().getDisplayMetrics().density;
+        int height = (listDataGroup.size()*54)*((int) density);
+
+        for (int i = 0; i < listDataGroup.size();i++){
+            try{
+                height += (listDataChild.get(listDataGroup.get(i)).size()*150)*((int) density);
+            }
+            catch(Exception e){
+                height += 0;
+            }
+        }
+
+        // Define o tamanho do ExpandableListView
+        ViewGroup.LayoutParams params = ExpandList.getLayoutParams();
+        params.height = height;
+        ExpandList.setLayoutParams(params);
+    }
+
+    void initData(){
         // initializing the list of groups
         listDataGroup = new ArrayList<>();
 
         // initializing the list of child
         listDataChild = new HashMap<>();
 
-        // initializing the adapter object
-        expandableListViewAdapter = new ExpandableListViewAdapter(this, listDataGroup,
-                listDataChild);
-
-        // setting list adapter
-        ExpandList.setAdapter(expandableListViewAdapter);
-    }
-
-    void initListData(){
         // Adiciona os dados do grupo
         listDataGroup.add(getString(R.string.mat));
         listDataGroup.add(getString(R.string.qui));
@@ -107,7 +116,15 @@ public class form_choose extends AppCompatActivity {
 
         listDataChild.put(listDataGroup.get(0), matematica);
 
-        expandableListViewAdapter.notifyDataSetChanged();
+        // Calcula o tamanho do ExpandableListView
+        calculateHeight();
+
+        // initializing the adapter object
+        expandableListViewAdapter = new ExpandableListViewAdapter(this, listDataGroup,
+                listDataChild);
+
+        // setting list adapter
+        ExpandList.setAdapter(expandableListViewAdapter);
     }
 
     //Não definir coprimento para os itens

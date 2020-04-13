@@ -5,7 +5,6 @@
     android:id="@+id/ScrollForms"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.EducacaoApps.InstantFormulas.form_choose">
 
     <LinearLayout
@@ -15,7 +14,7 @@
 
         <ExpandableListView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/ExpandList" />
     </LinearLayout>
 </ScrollView>

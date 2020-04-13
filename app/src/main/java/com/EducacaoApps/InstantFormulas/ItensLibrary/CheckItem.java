@@ -96,13 +96,12 @@ public class CheckItem extends LinearLayout implements View.OnClickListener{
     public CheckItem(Context context){
         super(context);
 
-        //Define os dados do item
-        setTitleEx("");
-        setFormula("");
-        setDescription("");
-
         // Define isXML como false
         isXML = false;
+
+        title_ex = "";
+        formula = "";
+        description = "";
 
         //Inicia a classe
         init();
@@ -221,7 +220,7 @@ public class CheckItem extends LinearLayout implements View.OnClickListener{
         Description = (TextView) Itens.findViewById(R.id.Description);
         Description.setAlpha(0.0f);
 
-        if (!isXML){
+        if (isXML){
             // Preenche os dados de acordo com os textos
             setTitleEx(getResources().getString(tit));
 
