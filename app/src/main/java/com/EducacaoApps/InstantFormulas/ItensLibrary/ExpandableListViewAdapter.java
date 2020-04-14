@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.EducacaoApps.InstantFormulas.ConvertStringtoData;
 import com.EducacaoApps.InstantFormulas.formulas.R;
 
@@ -19,12 +21,15 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
     private List<String> listDataGroup;
     private HashMap<String, List<String>> listDataChild;
     private LayoutInflater inflater;
+    private AppCompatActivity app;
 
     public ExpandableListViewAdapter(Context context, List<String> listDataGroup,
-                                     HashMap<String, List<String>> listDataChild){
+                                     HashMap<String, List<String>> listDataChild,
+                                     AppCompatActivity app){
         this.context = context;
         this.listDataGroup = listDataGroup;
         this.listDataChild = listDataChild;
+        this.app = app;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -88,6 +93,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
         final String childText = (String) getChild(i, i1);
         CheckItem checkItem = new CheckItem(context);
+        checkItem.add_activity(app);
 
         String[] data = ConvertStringtoData.SplitString(childText);
 

@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-// TODO Aumentar o desenpenho desta actvity
 public class form_choose extends AppCompatActivity {
     private ExpandableListView ExpandList;
     private ExpandableListViewAdapter expandableListViewAdapter;
@@ -69,7 +68,7 @@ public class form_choose extends AppCompatActivity {
                 for (int j = 0; j < listDataGroup.size();j++){
                     if (ExpandList.isGroupExpanded(j)){
                         try{
-                            height += (listDataChild.get(listDataGroup.get(j)).size()*152)*((int) density);
+                            height += (listDataChild.get(listDataGroup.get(j)).size()*154)*((int) density);
                         }
                         catch(Exception e){
                             height += 0;
@@ -92,7 +91,7 @@ public class form_choose extends AppCompatActivity {
                 for (int j = 0; j < listDataGroup.size();j++){
                     if (ExpandList.isGroupExpanded(j)){
                         try{
-                            height += (listDataChild.get(listDataGroup.get(j)).size()*152)*((int) density);
+                            height += (listDataChild.get(listDataGroup.get(j)).size()*154)*((int) density);
                         }
                         catch(Exception e){
                             height += 0;
@@ -223,7 +222,7 @@ public class form_choose extends AppCompatActivity {
 
         // initializing the adapter object
         expandableListViewAdapter = new ExpandableListViewAdapter(this, listDataGroup,
-                listDataChild);
+                listDataChild, this);
 
         // setting list adapter
         ExpandList.setAdapter(expandableListViewAdapter);

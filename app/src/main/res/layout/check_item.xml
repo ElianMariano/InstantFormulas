@@ -49,27 +49,17 @@
         android:textSize="14sp"
         android:visibility="gone" />
 
-    <LinearLayout
-        android:id="@+id/bottom"
+    <Button
+        android:id="@+id/Calcular"
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:orientation="horizontal"
-        android:visibility="gone">
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="5" />
-
-        <Button
-            android:id="@+id/Calcular"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="6"
-            android:background="@color/AppThemeBlue"
-            android:text="@string/Calc"
-            android:textColor="#ffffff"
-            android:textSize="18sp" />
-
-    </LinearLayout>
+        android:background="@color/AppThemeBlue"
+        android:text="@string/Calc"
+        android:textColor="#ffffff"
+        android:layout_marginLeft="200dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginBottom="6dp"
+        android:layout_marginTop="6dp"
+        android:textSize="18sp"
+        android:visibility="gone"/>
 </LinearLayout>

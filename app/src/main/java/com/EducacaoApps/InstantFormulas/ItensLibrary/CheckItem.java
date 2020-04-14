@@ -37,8 +37,6 @@ public class CheckItem extends LinearLayout implements View.OnClickListener{
     private TextView Description;
     //Variável que verifica se o item está expandido
     public boolean isExpanded, isFavorite;
-    //Layout que armazena o botão calcular
-    private LinearLayout bottom;
     //Botão que direciona para a Activity
     private Button Calcular;
     //Variável que define a duração da  animação de todas as views
@@ -82,9 +80,9 @@ public class CheckItem extends LinearLayout implements View.OnClickListener{
         activity = app;
 
         //Define os dados do item
-        setTitleEx("");
-        setFormula("");
-        setDescription("");
+        title_ex = "";
+        formula = "";
+        description = "";
 
         // Define isXML como false
         isXML = false;
@@ -244,41 +242,12 @@ public class CheckItem extends LinearLayout implements View.OnClickListener{
             setDescription(description);
         }
 
-        // Instancia do banco de dados
-        FavoritesHelper fh = new FavoritesHelper(getContext());
-
-        // Lista definida de acordo com o resultados do banco de dados
-        List<ContentValues> lista = fh.pesquisar(this.getTitleEx());
-
-        if (!lista.isEmpty())
-            setChecked(true);
-        else
-            setChecked(false);
-
         //Definição dos parametros do botão
-        Calcular = (Button) Itens.findViewById(R.id.Calcular);
+        Calcular = Itens.findViewById(R.id.Calcular);
         Calcular.setOnClickListener(this);
-
-        //Define o layout que armazena o botão calcular
-        bottom = (LinearLayout) Itens.findViewById(R.id.bottom);
-        bottom.setAlpha(0.0f);
 
         //Adiciona dentro do layout
         addView(Itens);
-    }
-
-    // Verifica se o item esta favorito no banco de dados
-    public void verifyChecked(){
-        // Instancia do banco de dados
-        FavoritesHelper fh = new FavoritesHelper(getContext());
-
-        // Lista definida de acordo com o resultados do banco de dados
-        List<ContentValues> lista = fh.pesquisar(this.getTitleEx());
-
-        if (!lista.isEmpty())
-            setChecked(true);
-        else
-            setChecked(false);
     }
 
     /*
@@ -299,6 +268,19 @@ public class CheckItem extends LinearLayout implements View.OnClickListener{
 
     //Um método para definir o título para cada instancia
     public void setTitleEx(CharSequence title){
+        if (!title.toString().isEmpty()){
+            // Instancia do banco de dados
+            FavoritesHelper fh = new FavoritesHelper(getContext());
+
+            // Lista definida de acordo com o resultados do banco de dados
+            List<ContentValues> lista = fh.pesquisar((String) title);
+
+            if (!lista.isEmpty())
+                setChecked(true);
+            else
+                setChecked(false);
+        }
+
         TitleEx.setText(title);
     }
 
@@ -437,13 +419,13 @@ public class CheckItem extends LinearLayout implements View.OnClickListener{
                     });
         }
 
-        bottom.animate().alpha(1).setDuration(DURATION)
+        Calcular.animate().alpha(1).setDuration(DURATION)
                 .setListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationStart(Animator animation) {
                         super.onAnimationStart(animation);
 
-                        bottom.setVisibility(VISIBLE);
+                        Calcular.setVisibility(VISIBLE);
                     }
                 });
     }
@@ -478,13 +460,13 @@ public class CheckItem extends LinearLayout implements View.OnClickListener{
                     });
         }
 
-        bottom.animate().alpha(0).setDuration(DURATION)
+        Calcular.animate().alpha(0).setDuration(DURATION)
                 .setListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationStart(Animator animation) {
                         super.onAnimationStart(animation);
 
-                        bottom.setVisibility(GONE);
+                        Calcular.setVisibility(GONE);
                     }
                 });
     }
