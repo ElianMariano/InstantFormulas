@@ -60,19 +60,52 @@ public class form_choose extends AppCompatActivity {
             }
         });
 
-        ExpandList.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+        ExpandList.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
             @Override
-            public boolean onChildClick(ExpandableListView expandableListView, View view,
-                                        int i, int i1, long l) {
-                Toast.makeText(
-                        getApplicationContext(),
-                        listDataGroup.get(i)
-                                + " : "
-                                + listDataChild.get(
-                                listDataGroup.get(i)).get(
-                                i1), Toast.LENGTH_SHORT)
-                        .show();
-                return false;
+            public void onGroupExpand(int i) {
+                float density = getResources().getDisplayMetrics().density;
+                int height = 0;
+
+                for (int j = 0; j < listDataGroup.size();j++){
+                    if (ExpandList.isGroupExpanded(j)){
+                        try{
+                            height += (listDataChild.get(listDataGroup.get(j)).size()*152)*((int) density);
+                        }
+                        catch(Exception e){
+                            height += 0;
+                        }
+                    }
+                }
+
+                ViewGroup.LayoutParams params = ExpandList.getLayoutParams();
+                params.height = height;
+                ExpandList.setLayoutParams(params);
+            }
+        });
+
+        ExpandList.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
+            @Override
+            public void onGroupCollapse(int i) {
+                float density = getResources().getDisplayMetrics().density;
+                int height = 0;
+
+                for (int j = 0; j < listDataGroup.size();j++){
+                    if (ExpandList.isGroupExpanded(j)){
+                        try{
+                            height += (listDataChild.get(listDataGroup.get(j)).size()*152)*((int) density);
+                        }
+                        catch(Exception e){
+                            height += 0;
+                        }
+                    }
+                }
+
+                ViewGroup.LayoutParams params = ExpandList.getLayoutParams();
+                if (height == 0)
+                    params.height = (listDataGroup.size()*54)*((int) density);
+                else
+                    params.height = height;
+                ExpandList.setLayoutParams(params);
             }
         });
     }
@@ -82,15 +115,6 @@ public class form_choose extends AppCompatActivity {
         float density = getResources().getDisplayMetrics().density;
         int height = (listDataGroup.size()*54)*((int) density);
 
-        for (int i = 0; i < listDataGroup.size();i++){
-            try{
-                height += (listDataChild.get(listDataGroup.get(i)).size()*150)*((int) density);
-            }
-            catch(Exception e){
-                height += 0;
-            }
-        }
-
         // Define o tamanho do ExpandableListView
         ViewGroup.LayoutParams params = ExpandList.getLayoutParams();
         params.height = height;
@@ -98,10 +122,10 @@ public class form_choose extends AppCompatActivity {
     }
 
     void initData(){
-        // initializing the list of groups
+        // Inicializa o lista de grupo
         listDataGroup = new ArrayList<>();
 
-        // initializing the list of child
+        // Inicializa a lista de Child
         listDataChild = new HashMap<>();
 
         // Adiciona os dados do grupo
@@ -109,12 +133,90 @@ public class form_choose extends AppCompatActivity {
         listDataGroup.add(getString(R.string.qui));
         listDataGroup.add(getString(R.string.Fis));
 
+        /*
+            Grupos sobre matemática
+        */
         List<String> matematica = new ArrayList<>();
         matematica.add(ConvertStringtoData.StringToDataString(
                 new String[]{getString(R.string.regra_de_tres), "",
                         getString(R.string.regra_de_tresDes) }));
 
+        matematica.add(ConvertStringtoData.StringToDataString(
+                new String[]{getString(R.string.area_q), getString(R.string.area_qFor),
+                        getString(R.string.area_qDes)}));
+
+        matematica.add(ConvertStringtoData.StringToDataString(
+                new String[]{getString(R.string.area_t), getString(R.string.area_tFor),
+                        getString(R.string.area_tDes)}));
+
+        matematica.add(ConvertStringtoData.StringToDataString(
+                new String[]{getString(R.string.comp_circulo), getString(R.string.comp_circuloFor),
+                        getString(R.string.comp_circuloDes)}));
+
+        matematica.add(ConvertStringtoData.StringToDataString(
+                new String[]{getString(R.string.pitagoras), getString(R.string.pitagorasFor),
+                        getString(R.string.pitagorasDes)}));
+
+        /*
+            Grupos sobre química
+        */
+        List<String> quimica = new ArrayList<>();
+        quimica.add(ConvertStringtoData.StringToDataString(
+                new String[]{getString(R.string.densidade), getString(R.string.densidadeFor),
+                        getString(R.string.densidadeDes)}));
+
+        quimica.add(ConvertStringtoData.StringToDataString(
+                new String[]{getString(R.string.velocidade_media),
+                        getString(R.string.velocidade_mediaFor),
+                        getString(R.string.velo_mediaDes)}));
+
+        quimica.add(ConvertStringtoData.StringToDataString(
+                new String[]{getString(R.string.variacao_entalpia),
+                        getString(R.string.variacao_entalpiaFor),
+                        getString(R.string.variacao_entalpiaDes)}));
+
+        quimica.add(ConvertStringtoData.StringToDataString(
+                new String[]{getString(R.string.energia_ativacao),
+                        getString(R.string.energia_ativacaoFor),
+                        getString(R.string.energia_ativacaoDes)}));
+
+        /*
+            Grupos sobre física
+        */
+        List<String> fisica = new ArrayList<>();
+        fisica.add(ConvertStringtoData.StringToDataString(
+                new String[]{getString(R.string.dilat_linear), getString(R.string.dilat_linearFor),
+                        getString(R.string.dilat_linearDes)}));
+
+        fisica.add(ConvertStringtoData.StringToDataString(
+                new String[]{getString(R.string.velo_media),
+                        getString(R.string.velo_mediaFor),
+                        getString(R.string.velo_mediaDes)}));
+
+        fisica.add(ConvertStringtoData.StringToDataString(
+                new String[]{getString(R.string.acel_media),
+                        getString(R.string.acel_mediaFor),
+                        getString(R.string.acel_mediaDes)}));
+
+        fisica.add(ConvertStringtoData.StringToDataString(
+                new String[]{getString(R.string.equa_torricelli),
+                        getString(R.string.equa_torricelliFor),
+                        getString(R.string.equa_torricelliDes)}));
+
+        fisica.add(ConvertStringtoData.StringToDataString(
+                new String[]{getString(R.string.equa_calorimetria),
+                        getString(R.string.equa_calorimetriaFor),
+                        getString(R.string.equa_calorimetriaDes)}));
+
+        fisica.add(ConvertStringtoData.StringToDataString(
+                new String[]{getString(R.string.clapeyron),
+                        getString(R.string.clapeyronFor),
+                        getString(R.string.clapeyronDes)}));
+
+        // Adiciona aos grupos
         listDataChild.put(listDataGroup.get(0), matematica);
+        listDataChild.put(listDataGroup.get(1), quimica);
+        listDataChild.put(listDataGroup.get(2), fisica);
 
         // Calcula o tamanho do ExpandableListView
         calculateHeight();
@@ -125,97 +227,6 @@ public class form_choose extends AppCompatActivity {
 
         // setting list adapter
         ExpandList.setAdapter(expandableListViewAdapter);
-    }
-
-    //Não definir coprimento para os itens
-    private void build(){
-        //Adiciona os itens
-        /*
-        --------------------------------------
-                    GRUPO MATEMÁTICA
-        --------------------------------------
-         */
-        /*
-        final CheckItem regra_tres = new CheckItem(this, Formulas.REGRA_TRES,
-                R.string.regra_de_tres, R.string.regra_de_tresDes);
-        ex.addMat(regra_tres);
-
-
-        final CheckItem area_q = new CheckItem(this, Formulas.AREA_QUADRADO, R.string.area_q,
-                R.string.area_qFor, R.string.area_qDes);
-        ex.addMat(area_q);
-
-        final CheckItem area_t = new CheckItem(this, Formulas.AREA_TRIANGULO, R.string.area_t,
-                R.string.area_tFor, R.string.area_tDes);
-        ex.addMat(area_t);
-
-        final CheckItem comp_circulo = new CheckItem(this, Formulas.COMPRIMENTO_CIRCULO,
-                R.string.comp_circulo, R.string.comp_circuloFor, R.string.comp_circuloDes);
-        ex.addMat(comp_circulo);
-
-        final CheckItem pitagoras = new CheckItem(this, Formulas.PITAGORAS, R.string.pitagoras,
-                R.string.pitagorasFor, R.string.pitagorasDes);
-        ex.addMat(pitagoras);
-         */
-
-        /*
-        ------------------------------------------
-                      GRUPO QUÍMICA
-        ------------------------------------------
-        */
-
-        /*
-        final CheckItem densidade = new CheckItem(this, Formulas.DENSIDADE, R.string.densidade,
-                R.string.densidadeFor, R.string.densidadeDes);
-        ex.addQui(densidade);
-
-        final CheckItem velocidade_media = new CheckItem(this,
-                Formulas.VELOCIADADE_MEDIA_REACAO, R.string.velocidade_media,
-                R.string.velocidade_mediaFor, R.string.velocidade_mediaDes);
-        ex.addQui(velocidade_media);
-
-        final CheckItem variacao_entalpia = new CheckItem(this, Formulas.VARIACAO_ENTALPIA,
-                R.string.variacao_entalpia, R.string.variacao_entalpiaFor,
-                R.string.variacao_entalpiaDes);
-        ex.addQui(variacao_entalpia);
-
-        final CheckItem energia_ativacao = new CheckItem(this, Formulas.ENERGIA_ATIVACAO,
-                R.string.energia_ativacao, R.string.energia_ativacaoFor,
-                R.string.energia_ativacaoDes);
-        ex.addQui(energia_ativacao);
-         */
-
-        /*
-        ------------------------------------------
-                      GRUPO FÍSICA
-        ------------------------------------------
-        */
-        /*
-        final CheckItem dilat_linear = new CheckItem(this, Formulas.DILATACAO_LINEAR,
-                R.string.dilat_linear, R.string.dilat_linearFor, R.string.dilat_linearDes);
-        ex.addFis(dilat_linear);
-
-        final CheckItem velo_media = new CheckItem(this, Formulas.VELOCIADADE_MEDIA,
-                R.string.velo_media, R.string.velo_mediaFor, R.string.velo_mediaDes);
-        ex.addFis(velo_media);
-
-        final CheckItem acel_media = new CheckItem(this, Formulas.ACELERACAO_MEDIA,
-                R.string.acel_media, R.string.acel_mediaFor, R.string.acel_mediaDes);
-        ex.addFis(acel_media);
-
-        final CheckItem equa_torricelli = new CheckItem(this, Formulas.EQUACAO_TORRICELI,
-                R.string.equa_torricelli, R.string.equa_torricelliFor, R.string.equa_torricelliDes);
-        ex.addFis(equa_torricelli);
-
-        final CheckItem equa_calorimetria = new CheckItem(this, Formulas.EQUACAO_CALORIMETRIA,
-                R.string.equa_calorimetria, R.string.equa_calorimetriaFor,
-                R.string.equa_calorimetriaDes);
-        ex.addFis(equa_calorimetria);
-
-        final CheckItem clapeyron = new CheckItem(this, Formulas.CLAPEYRON, R.string.clapeyron,
-                 R.string.clapeyronFor, R.string.clapeyronDes);
-        ex.addFis(clapeyron);
-         */
     }
 
     @Override

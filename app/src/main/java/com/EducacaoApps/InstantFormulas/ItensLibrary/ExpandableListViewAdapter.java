@@ -91,10 +91,6 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
 
         String[] data = ConvertStringtoData.SplitString(childText);
 
-        Log.e("Adapter", String.format("0: %s", data[0]));
-        Log.e("Adapter", String.format("1: %s", data[1]));
-        Log.e("Adapter", String.format("2: %s", data[2]));
-
         checkItem.setTitleEx(data[0]);
 
         if (!data[1].isEmpty())
