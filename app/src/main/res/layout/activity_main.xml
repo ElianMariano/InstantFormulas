@@ -24,7 +24,8 @@
         <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            android:layout_weight="0.9">
 
             <LinearLayout
                 android:id="@+id/Recentes"
@@ -34,7 +35,8 @@
 
                 <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="0dp"
+                    android:layout_weight="0.9">
 
                     <LinearLayout
                         android:id="@+id/r_cont"
@@ -60,8 +62,8 @@
                             android:textAllCaps="false" />
 
                     </LinearLayout>
-                </ScrollView>
 
+                </ScrollView>
             </LinearLayout>
 
             <LinearLayout
@@ -98,10 +100,19 @@
                             android:textAllCaps="false" />
                     </LinearLayout>
                 </ScrollView>
-
             </LinearLayout>
 
         </FrameLayout>
+
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adview"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.1"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            ads:adSize="BANNER"
+            ads:adUnitId="ADS_ID" />
     </LinearLayout>
 
 </TabHost>

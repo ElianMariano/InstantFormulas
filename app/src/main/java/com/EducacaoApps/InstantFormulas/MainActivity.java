@@ -5,6 +5,8 @@ import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.fragment.app.DialogFragment;
+
+import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,18 +16,21 @@ import android.widget.Space;
 import android.widget.TabHost;
 import android.view.Menu;
 import android.widget.TextView;
-
 import com.EducacaoApps.InstantFormulas.ItensLibrary.FavoriteItem;
 import com.EducacaoApps.InstantFormulas.ItensLibrary.HistoricoItem;
 import com.EducacaoApps.InstantFormulas.Models.FavoritesHelper;
 import com.EducacaoApps.InstantFormulas.Models.HistoricoHelper;
 import com.EducacaoApps.InstantFormulas.formulas.R;
-
 import com.EducacaoApps.InstantFormulas.ItensLibrary.BackAlertFragment;
-
 import java.util.List;
-
 import static android.view.View.GONE;
+
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 //Criar uma classe que extenda a classe TabHost
 public class MainActivity extends AppCompatActivity{
@@ -41,6 +46,8 @@ public class MainActivity extends AppCompatActivity{
     // Spaces utilizados para organizar os TextViews
     private Space r_space;
     private Space f_space;
+    // AdView da activity
+    private AdView adview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +55,7 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
 
         //Gerencia as guias da Activity
-        TabHostMain = (TabHost) findViewById(R.id.TabHostMain);
+        TabHostMain = findViewById(R.id.TabHostMain);
         TabHostMain.setup();
 
         //Criando a guia recentes
@@ -168,6 +175,34 @@ public class MainActivity extends AppCompatActivity{
                     txt_F.setVisibility(View.VISIBLE);
                     f_space.setVisibility(View.VISIBLE);
                 }
+            }
+        });
+
+        // Inicializa os anúncios
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+                // Carrega o anúncio do bottom
+                adview = findViewById(R.id.adview);
+                final AdRequest adRequest = new AdRequest.Builder().build();
+                adview.loadAd(adRequest);
+
+                adview.setAdListener(new AdListener(){
+                    @Override
+                    public void onAdLoaded() {
+                        super.onAdLoaded();
+                        Log.e("Main", "Ad loaded");
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(int i) {
+                        super.onAdFailedToLoad(i);
+                        Log.e("Main", "Error when loading ad");
+
+                        final AdRequest request= new AdRequest.Builder().build();
+                        adview.loadAd(request);
+                    }
+                });
             }
         });
     }
