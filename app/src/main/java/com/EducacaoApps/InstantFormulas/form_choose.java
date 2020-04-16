@@ -2,9 +2,13 @@ package com.EducacaoApps.InstantFormulas;
 
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.res.Configuration;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.OrientationEventListener;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
@@ -43,6 +47,38 @@ public class form_choose extends AppCompatActivity {
 
         // Prepara os dados da lista
         initData();
+
+        OrientationEventListener orientationEventListener = new OrientationEventListener(
+                this, SensorManager.SENSOR_DELAY_NORMAL
+        ) {
+            @Override
+            public void onOrientationChanged(int i) {
+                float density = getResources().getDisplayMetrics().density;
+                int height = (listDataGroup.size()*54)*((int) density);
+
+                for (int j = 0; j < listDataGroup.size();j++){
+                    if (ExpandList.isGroupExpanded(j)){
+                        try{
+                            height += (listDataChild.get(listDataGroup.get(j)).size()*154)*((int) density);
+                        }
+                        catch(Exception e){
+                            height += 0;
+                        }
+                    }
+                }
+
+                ViewGroup.LayoutParams params = ExpandList.getLayoutParams();
+                params.height = height;
+                ExpandList.setLayoutParams(params);
+            }
+        };
+
+        orientationEventListener.enable();
+    }
+
+    private boolean isPortrait(int orientation) {
+        return (orientation >= (360 - 90) && orientation <= 360) ||
+                (orientation >= 0 && orientation <= 90);
     }
 
     void initListeners(){
