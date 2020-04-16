@@ -76,11 +76,6 @@ public class form_choose extends AppCompatActivity {
         orientationEventListener.enable();
     }
 
-    private boolean isPortrait(int orientation) {
-        return (orientation >= (360 - 90) && orientation <= 360) ||
-                (orientation >= 0 && orientation <= 90);
-    }
-
     void initListeners(){
         ExpandList.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
