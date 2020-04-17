@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Intent;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,6 +40,7 @@ public class dilatacao_linear extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dilatacao_linear);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 
         // Referencia os itens utilizados a activity
         v_comp = findViewById(R.id.v_comp);

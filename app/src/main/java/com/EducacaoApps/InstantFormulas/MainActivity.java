@@ -3,6 +3,8 @@ package com.EducacaoApps.InstantFormulas;
 import android.content.ContentValues;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import androidx.fragment.app.DialogFragment;
 
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 
         //Gerencia as guias da Activity
         TabHostMain = findViewById(R.id.TabHostMain);

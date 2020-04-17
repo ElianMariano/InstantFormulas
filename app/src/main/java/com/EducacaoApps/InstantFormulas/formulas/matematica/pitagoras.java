@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Intent;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,6 +34,7 @@ public class pitagoras extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pitagoras);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 
         // Referencia os itens utilizados na activity
         hipotenusa = (EditText) findViewById(R.id.hipotenusa);

@@ -5,6 +5,8 @@ import android.content.ContentValues;
 import android.content.Intent;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import java.lang.Math;
 
@@ -33,6 +35,7 @@ public class equa_torricelli extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_equa_torricelli);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 
         // Referencia os itens
         V = findViewById(R.id.V);
