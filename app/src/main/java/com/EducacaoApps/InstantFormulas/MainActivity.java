@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TabHost;
@@ -50,6 +51,10 @@ public class MainActivity extends AppCompatActivity{
     private Space f_space;
     // AdView da activity
     private AdView adview;
+    // Layout de conteudo
+    private LinearLayout content;
+    // Define se o anúncio aparece
+    private boolean isAdShown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +62,15 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 
+        // Referencia o layout content
+        content = findViewById(R.id.content);
+
         //Gerencia as guias da Activity
         TabHostMain = findViewById(R.id.TabHostMain);
         TabHostMain.setup();
+
+        // Define o isAdShown como true
+        isAdShown = true;
 
         //Criando a guia recentes
         TabHost.TabSpec spec = TabHostMain.newTabSpec("Recentes");
@@ -182,30 +193,58 @@ public class MainActivity extends AppCompatActivity{
         });
 
         // Inicializa os anúncios
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+        MobileAds.initialize(this);
+
+        // Carrega o anúncio do bottom
+        adview = findViewById(R.id.adview);
+        final AdRequest adRequest = new AdRequest.Builder().build();
+        adview.loadAd(adRequest);
+
+        adview.setAdListener(new AdListener(){
             @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-                // Carrega o anúncio do bottom
-                adview = findViewById(R.id.adview);
-                final AdRequest adRequest = new AdRequest.Builder().build();
-                adview.loadAd(adRequest);
+            public void onAdLoaded() {
+                super.onAdLoaded();
 
-                adview.setAdListener(new AdListener(){
-                    @Override
-                    public void onAdLoaded() {
-                        super.onAdLoaded();
-                        Log.e("Main", "Ad loaded");
-                    }
+                if (!isAdShown){
+                    // Ajusta o layout para mostrar o anúncio
+                    content.setLayoutParams(
+                            new LinearLayout.LayoutParams(
+                                    ViewGroup.LayoutParams.MATCH_PARENT,
+                                    0, 0.9f));
 
-                    @Override
-                    public void onAdFailedToLoad(int i) {
-                        super.onAdFailedToLoad(i);
-                        Log.e("Main", "Error when loading ad");
+                    adview.setLayoutParams(
+                            new LinearLayout.LayoutParams(
+                                    ViewGroup.LayoutParams.MATCH_PARENT,
+                                    0, 0.1f));
 
-                        final AdRequest request= new AdRequest.Builder().build();
-                        adview.loadAd(request);
-                    }
-                });
+                    // Define isAdShown como true
+                    isAdShown = true;
+                }
+            }
+
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+
+                if (isAdShown){
+                    // Redefine o layout
+                    content.setLayoutParams(
+                            new LinearLayout.LayoutParams(
+                                    ViewGroup.LayoutParams.MATCH_PARENT,
+                                    0, 1f));
+
+                    // Redefine o adview
+                    adview.setLayoutParams(
+                            new LinearLayout.LayoutParams(
+                                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                                    0, 0f));
+
+                    isAdShown = false;
+                }
+
+                // Carrega um novo anúncio
+                final AdRequest request= new AdRequest.Builder().build();
+                adview.loadAd(request);
             }
         });
     }
