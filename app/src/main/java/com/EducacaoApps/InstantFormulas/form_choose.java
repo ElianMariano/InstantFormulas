@@ -1,8 +1,13 @@
 package com.EducacaoApps.InstantFormulas;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.hardware.SensorManager;
@@ -13,6 +18,7 @@ import android.view.OrientationEventListener;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
@@ -20,16 +26,25 @@ import com.EducacaoApps.InstantFormulas.ItensLibrary.ExpandableListViewAdapter;
 import com.EducacaoApps.InstantFormulas.formulas.R;
 
 import com.EducacaoApps.InstantFormulas.ItensLibrary.CheckItem;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 public class form_choose extends AppCompatActivity {
     private ExpandableListView ExpandList;
     private ExpandableListViewAdapter expandableListViewAdapter;
     private List<String> listDataGroup;
+    private ScrollView content;
     private HashMap<String, List<String>> listDataChild;
+    private AdView adview;
+    private boolean isAdRemoved;
+    private boolean isAdShown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +56,8 @@ public class form_choose extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        content = findViewById(R.id.content);
+
         // Incializa a ExpandList
         ExpandList = findViewById(R.id.ExpandList);
 
@@ -50,35 +67,101 @@ public class form_choose extends AppCompatActivity {
         // Prepara os dados da lista
         initData();
 
-        // TODO Criar uma logica para mostrar o Alert aqui
-        /*
-        if (!isAdRemoved){
+        isAdShown = false;
+
+        final SharedPreferences shared = getPreferences(Context.MODE_PRIVATE);
+        isAdRemoved = shared.getBoolean("isAdRemoved", false);
+
+        // Define um número aleátorio para perguntar se deseja remover os anúncios
+        Random random = new Random();
+        int num = random.nextInt(9);
+        Log.e("FormChoose", String.format("Random: %d", num));
+
+        if (!isAdRemoved && num == 1){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage(R.string.remove_ads);
-            builder.setNegativeButton(R.string.Nao, null);
+            builder.setNegativeButton(R.string.Nao, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    initializeAds();
+                }
+            });
             builder.setPositiveButton(R.string.Sim, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    //SharedPreferences.Editor editor = shared.edit();
-                    //editor.putBoolean("isAdRemoved", true);
-                    //editor.apply();
+                    // TODO Criar a lógica de compra da remoção de anúncios
+                    SharedPreferences.Editor editor = shared.edit();
+                    editor.putBoolean("isAdRemoved", true);
+                    editor.apply();
 
                     isAdRemoved = true;
-                }
-            });
-
-            // Define um listener onCancel
-            builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                @Override
-                public void onCancel(DialogInterface dialogInterface) {
-                    Log.e("Main", "Dialog canceled");
                 }
             });
 
             AlertDialog alert = builder.create();
             alert.show();
         }
-         */
+
+        if (!isAdRemoved && num != 1)
+            initializeAds();
+    }
+
+    void initializeAds(){
+        // Inicializa os anúncios
+        MobileAds.initialize(getApplicationContext());
+
+        // Carrega o anúncio do bottom
+        adview = findViewById(R.id.adview);
+        final AdRequest adRequest = new AdRequest.Builder().build();
+        adview.loadAd(adRequest);
+
+        adview.setAdListener(new AdListener(){
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+
+                if (!isAdShown){
+                    // Ajusta o layout para mostrar o anúncio
+                    content.setLayoutParams(
+                            new LinearLayout.LayoutParams(
+                                    ViewGroup.LayoutParams.MATCH_PARENT,
+                                    0, 0.9f));
+
+                    adview.setLayoutParams(
+                            new LinearLayout.LayoutParams(
+                                    ViewGroup.LayoutParams.MATCH_PARENT,
+                                    0, 0.1f));
+
+                    // Define isAdShown como true
+                    isAdShown = true;
+                }
+            }
+
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+
+                if (isAdShown){
+                    // Redefine o layout
+                    content.setLayoutParams(
+                            new LinearLayout.LayoutParams(
+                                    ViewGroup.LayoutParams.MATCH_PARENT,
+                                    0, 1f));
+
+                    // Redefine o adview
+                    adview.setLayoutParams(
+                            new LinearLayout.LayoutParams(
+                                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                                    0, 0f));
+
+                    isAdShown = false;
+                }
+
+                // Carrega um novo anúncio
+                final AdRequest request= new AdRequest.Builder().build();
+                adview.loadAd(request);
+            }
+        });
     }
 
     void initListeners(){
