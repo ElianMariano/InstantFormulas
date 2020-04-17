@@ -78,4 +78,5 @@
     <string name="variacao_entalpiaDes">Calculates the enthalpy variation</string>
     <string name="velocidade_media">Average velocity of a chemical reaction</string>
     <string name="velocidade_mediaDes">Calculates the average velocity of a chemical reaction</string>
+    <string name="remove_ads">Do you want to remove the Ads?</string>
 </resources>

@@ -22,6 +22,7 @@
     <string name="Back_P">Você quer mesmo sair?</string>
     <string name="Nao">Não</string>
     <string name="Sim">Sim</string>
+    <string name="remove_ads">Você deseja remover os Anúncios?</string>
     <!-- Texto calcular -->
     <string name="Calc">Calcular</string>
     <!-- Texto limpar -->

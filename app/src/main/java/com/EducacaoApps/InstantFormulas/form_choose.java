@@ -49,6 +49,36 @@ public class form_choose extends AppCompatActivity {
 
         // Prepara os dados da lista
         initData();
+
+        // TODO Criar uma logica para mostrar o Alert aqui
+        /*
+        if (!isAdRemoved){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(R.string.remove_ads);
+            builder.setNegativeButton(R.string.Nao, null);
+            builder.setPositiveButton(R.string.Sim, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    //SharedPreferences.Editor editor = shared.edit();
+                    //editor.putBoolean("isAdRemoved", true);
+                    //editor.apply();
+
+                    isAdRemoved = true;
+                }
+            });
+
+            // Define um listener onCancel
+            builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialogInterface) {
+                    Log.e("Main", "Dialog canceled");
+                }
+            });
+
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
+         */
     }
 
     void initListeners(){
