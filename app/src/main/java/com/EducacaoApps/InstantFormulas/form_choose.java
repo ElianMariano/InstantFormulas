@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.OrientationEventListener;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -187,7 +188,7 @@ public class form_choose extends AppCompatActivity {
                 for (int j = 0; j < listDataGroup.size();j++){
                     if (ExpandList.isGroupExpanded(j)){
                         try{
-                            height += (listDataChild.get(listDataGroup.get(j)).size()*154)*((int) density);
+                            height += (listDataChild.get(listDataGroup.get(j)).size()*164)*((int) density);
                         }
                         catch(Exception e){
                             height += 0;
@@ -210,7 +211,7 @@ public class form_choose extends AppCompatActivity {
                 for (int j = 0; j < listDataGroup.size();j++){
                     if (ExpandList.isGroupExpanded(j)){
                         try{
-                            height += (listDataChild.get(listDataGroup.get(j)).size()*154)*((int) density);
+                            height += (listDataChild.get(listDataGroup.get(j)).size()*164)*((int) density);
                         }
                         catch(Exception e){
                             height += 0;

@@ -95,7 +95,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
         CheckItem checkItem = new CheckItem(context);
         checkItem.add_activity(app);
 
-        String[] data = ConvertStringtoData.SplitString(childText);
+        String[] data = ConvertStringtoData.SplitItemString(childText);
 
         checkItem.setTitleEx(data[0]);
 
@@ -106,8 +106,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
 
         checkItem.setDescription(data[2]);
 
-        if (view == null)
-            view = checkItem;
+        view = checkItem;
 
         return view;
     }

@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FormulaApp.iml" filepath="$PROJECT_DIR$/FormulaApp.iml" group="FormulaApp" />
+      <module fileurl="file://$PROJECT_DIR$/InstantFormulas.iml" filepath="$PROJECT_DIR$/InstantFormulas.iml" group="InstantFormulas" />
+      <module fileurl="file://$PROJECT_DIR$/app/InstantFormulas-app.iml" filepath="$PROJECT_DIR$/app/InstantFormulas-app.iml" group="InstantFormulas/app" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="FormulaApp/app" />
     </modules>
   </component>

@@ -73,6 +73,19 @@ public class ConvertStringtoData {
     // Método que somente divide a string, retornando uma String vazia quando necessário
     public static String[] SplitString(String data){
         // Variável que armazena a string dividida
+        String[] split = data.split("-");
+
+        // Verifica se uma das strings é igual a N
+        for (int i = 0;i < split.length;i++){
+            if (split[i].equals("N"))
+                split[i] = "";
+        }
+
+        return split;
+    }
+
+    public static String[] SplitItemString(String data){
+        // Variável que armazena a string dividida
         String[] split = data.split("&");
 
         // Verifica se uma das strings é igual a N
