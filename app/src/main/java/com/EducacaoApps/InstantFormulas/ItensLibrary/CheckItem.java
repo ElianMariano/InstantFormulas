@@ -30,7 +30,7 @@ public class CheckItem extends LinearLayout implements View.OnClickListener{
     //O Botão que define os favoritos
     private Button Favorit;
     //O botão que expande a view
-    private Button TitleEx;
+    private TextView TitleEx;
     //O textView que armezena o nome da fórmula
     private TextView Formula;
     //O textview que define uma breve descrição da fórmula
@@ -190,33 +190,17 @@ public class CheckItem extends LinearLayout implements View.OnClickListener{
         Itens = (LinearLayout) inflater.inflate(R.layout.check_item, this, false);
 
         //Definição dos parametros do botão título
-        Favorit = (Button) Itens.findViewById(R.id.Favorit);
+        Favorit = Itens.findViewById(R.id.Favorit);
         Favorit.setOnClickListener(this);
 
         //Definição so parametros do textview título
         TitleEx = Itens.findViewById(R.id.TitleEx);
-        //OnClick separado porque o outro não é executado
-        TitleEx.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!isExpanded)
-                {
-                    expand();
-                }
-                else
-                {
-                    desExpand();
-                }
-            }
-        });
 
         //Definição dos parametros da formula
         Formula = Itens.findViewById(R.id.Formula);
-        Formula.setAlpha(0.0f);
 
         //Definição dos parametros da descrição
-        Description = (TextView) Itens.findViewById(R.id.Description);
-        Description.setAlpha(0.0f);
+        Description = Itens.findViewById(R.id.Description);
 
         if (isXML){
             // Preenche os dados de acordo com os textos
@@ -255,11 +239,17 @@ public class CheckItem extends LinearLayout implements View.OnClickListener{
      */
     //Um método para definir o título da formula para cada instancia
     public void setFormula(CharSequence name){
-        Formula.setText(name);
+        if (!name.toString().isEmpty()){
+            Formula.setText(name);
+            Formula.setVisibility(VISIBLE);
+        }
     }
 
     public void setFormula(int name){
-        Formula.setText(getResources().getText(name));
+        if (!getResources().getString(name).isEmpty()){
+            Formula.setText(getResources().getText(name));
+            Formula.setVisibility(VISIBLE);
+        }
     }
 
     public String getTitleEx(){

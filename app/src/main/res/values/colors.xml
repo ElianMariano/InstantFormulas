@@ -9,4 +9,6 @@
     <color name="colorAccent">#0056a1</color>
     <!--Esta cor é usada quando o botão muda seu estado-->
     <color name="clearButton">#ff2020</color>
+    <!-- Cor usada no checkitem -->
+    <color name="checkColor">#E6E6E6</color>
 </resources>

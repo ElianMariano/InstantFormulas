@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#FFFFFF"
     tools:context="com.EducacaoApps.InstantFormulas.form_choose">
 
     <ScrollView
@@ -19,7 +20,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ExpandableListView
+            <com.EducacaoApps.InstantFormulas.ItensLibrary.ExpandView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/ExpandList" />

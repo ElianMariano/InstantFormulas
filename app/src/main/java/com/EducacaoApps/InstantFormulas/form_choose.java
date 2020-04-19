@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import com.EducacaoApps.InstantFormulas.ItensLibrary.ExpandView;
 import com.EducacaoApps.InstantFormulas.ItensLibrary.ExpandableListViewAdapter;
 import com.EducacaoApps.InstantFormulas.formulas.R;
 
@@ -38,7 +39,7 @@ import java.util.List;
 import java.util.Random;
 
 public class form_choose extends AppCompatActivity {
-    private ExpandableListView ExpandList;
+    private ExpandView ExpandList;
     private ExpandableListViewAdapter expandableListViewAdapter;
     private List<String> listDataGroup;
     private ScrollView content;
@@ -182,6 +183,7 @@ public class form_choose extends AppCompatActivity {
         ExpandList.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
             @Override
             public void onGroupExpand(int i) {
+                /*
                 float density = getResources().getDisplayMetrics().density;
                 int height = 0;
 
@@ -199,12 +201,14 @@ public class form_choose extends AppCompatActivity {
                 ViewGroup.LayoutParams params = ExpandList.getLayoutParams();
                 params.height = height;
                 ExpandList.setLayoutParams(params);
+                 */
             }
         });
 
         ExpandList.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
             @Override
             public void onGroupCollapse(int i) {
+                /*
                 float density = getResources().getDisplayMetrics().density;
                 int height = 0;
 
@@ -225,6 +229,7 @@ public class form_choose extends AppCompatActivity {
                 else
                     params.height = height;
                 ExpandList.setLayoutParams(params);
+                 */
             }
         });
     }
@@ -338,7 +343,7 @@ public class form_choose extends AppCompatActivity {
         listDataChild.put(listDataGroup.get(2), fisica);
 
         // Calcula o tamanho do ExpandableListView
-        calculateHeight();
+        //calculateHeight();
 
         // initializing the adapter object
         expandableListViewAdapter = new ExpandableListViewAdapter(this, listDataGroup,
