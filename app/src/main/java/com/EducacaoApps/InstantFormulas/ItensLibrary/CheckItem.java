@@ -39,8 +39,6 @@ public class CheckItem extends LinearLayout implements View.OnClickListener{
     public boolean isExpanded, isFavorite;
     //Botão que direciona para a Activity
     private Button Calcular;
-    //Variável que define a duração da  animação de todas as views
-    private final int DURATION = 300;
     // Define que activity sera iniciada
     private Formulas formulas;
     // Define a activity atual
@@ -376,89 +374,6 @@ public class CheckItem extends LinearLayout implements View.OnClickListener{
         else if (v == Calcular){
             Do(formulas);
         }
-    }
-
-    //A animação deve afetar um item atras do outro
-    //Método que expande os itens
-    public void expand(){
-        //Define o estado do item
-        isExpanded = true;
-
-        if (Formula.getText() != ""){
-            Formula.animate().alpha(1)
-                    .setDuration(DURATION)
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationStart(Animator animation) {
-                            super.onAnimationStart(animation);
-
-                            Formula.setVisibility(VISIBLE);
-                        }
-                    });
-        }
-
-        if (Description.getText() != ""){
-            Description.animate().alpha(1)
-                    .setDuration(DURATION)
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationStart(Animator animation) {
-                            super.onAnimationStart(animation);
-                            Description.setVisibility(VISIBLE);
-                        }
-                    });
-        }
-
-        Calcular.animate().alpha(1).setDuration(DURATION)
-                .setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationStart(Animator animation) {
-                        super.onAnimationStart(animation);
-
-                        Calcular.setVisibility(VISIBLE);
-                    }
-                });
-    }
-
-    //Método que contrai os itens
-    public void desExpand(){
-        //Define o estado do item
-        isExpanded = false;
-
-        if (Formula.getText() != ""){
-            Formula.animate().alpha(0)
-                    .setDuration(DURATION)
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationStart(Animator animation) {
-                            super.onAnimationStart(animation);
-
-                            Formula.setVisibility(GONE);
-                        }
-                    });
-        }
-
-        if (Description.getText() != ""){
-            Description.animate().alpha(0)
-                    .setDuration(DURATION)
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationStart(Animator animation) {
-                            super.onAnimationStart(animation);
-                            Description.setVisibility(GONE);
-                        }
-                    });
-        }
-
-        Calcular.animate().alpha(0).setDuration(DURATION)
-                .setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationStart(Animator animation) {
-                        super.onAnimationStart(animation);
-
-                        Calcular.setVisibility(GONE);
-                    }
-                });
     }
 
     // Adiciona a activity que sera iniciada
