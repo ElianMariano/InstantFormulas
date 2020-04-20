@@ -191,7 +191,6 @@ public class regra_tres extends AppCompatActivity {
                         @Override
                         public void onAdLoaded(){
                             interstitialAd.show();
-                            Log.e("RegraDeTres", "Anúncio carregado");
                         }
                     });
                 }

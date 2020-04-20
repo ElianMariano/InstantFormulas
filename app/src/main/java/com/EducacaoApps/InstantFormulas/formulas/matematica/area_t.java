@@ -28,7 +28,6 @@ import com.google.android.gms.ads.MobileAds;
 
 import java.util.Random;
 
-// TODO Problema para gerar recentes
 public class area_t extends AppCompatActivity {
     // Variáveis que armazenam os itens que serão utilizados
     private EditText area;
@@ -174,9 +173,6 @@ public class area_t extends AppCompatActivity {
             calcular.setText(R.string.limpar);
 
             if (!hasIntent){
-                // Define hasIntent como true
-                hasIntent = true;
-
                 Double[] dt = new Double[3];
                 dt[0] = null;
                 dt[1] = Dnum2;
@@ -184,6 +180,7 @@ public class area_t extends AppCompatActivity {
 
                 // Variável que armazena os dados
                 String data = ConvertStringtoData.DataToString(dt);
+                Log.e("AreaT", String.format("Data: %s", data));
 
                 // Cria um ContentValues
                 ContentValues cv = new ContentValues();
@@ -219,9 +216,6 @@ public class area_t extends AppCompatActivity {
             calcular.setText(R.string.limpar);
 
             if (!hasIntent){
-                // Define hasIntent como true
-                hasIntent = true;
-
                 Double[] dt = new Double[3];
                 dt[0] = Dnum1;
                 dt[1] = null;
@@ -229,6 +223,7 @@ public class area_t extends AppCompatActivity {
 
                 // Variável que armazena os dados
                 String data = ConvertStringtoData.DataToString(dt);
+                Log.e("AreaT", String.format("Data: %s", data));
 
                 // Cria um ContentValues
                 ContentValues cv = new ContentValues();
@@ -264,9 +259,6 @@ public class area_t extends AppCompatActivity {
             calcular.setText(R.string.limpar);
 
             if (!hasIntent){
-                // Define hasIntent como true
-                hasIntent = true;
-
                 Double[] dt = new Double[3];
                 dt[0] = Dnum1;
                 dt[1] = Dnum2;
@@ -274,6 +266,7 @@ public class area_t extends AppCompatActivity {
 
                 // Variável que armazena os dados
                 String data = ConvertStringtoData.DataToString(dt);
+                Log.e("AreaT", String.format("Data: %s", data));
 
                 // Cria um ContentValues
                 ContentValues cv = new ContentValues();

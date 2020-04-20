@@ -173,7 +173,7 @@ public class comp_circulo extends AppCompatActivity {
                 hh.inserir(cv);
             }
         }
-        else if ((Dnum1 != null && Dnum2 == null) && isDone == false){
+        else if ((Dnum1 != null && Dnum2 == null) && !isDone){
             // Define o valor de isDone
             isDone = true;
 
@@ -184,8 +184,8 @@ public class comp_circulo extends AppCompatActivity {
 
             // Define o conteeúdo das linhas
             line1.setText(String.valueOf(Dnum1) + " = 2 * " + String.valueOf(PI) + " *  R");
-            line2.setText("R = " + String.valueOf(2 * PI) + " * " + String.valueOf(Dnum1));
-            line3.setText("R = " + String.format("%.2f", 2 * PI * Dnum1));
+            line2.setText(String.format("R = %.2f / %.2f", Dnum1, 2 * PI));
+            line3.setText(String.format("R = %.2f", Dnum1/(2*PI)));
 
             // Define o estilo do botão
             calcular.setBackgroundColor(ContextCompat.getColor(this, R.color.clearButton));
