@@ -1,10 +1,12 @@
 package com.EducacaoApps.InstantFormulas.formulas.matematica;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -13,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import java.lang.Math;
+import java.util.Random;
 
 import com.EducacaoApps.InstantFormulas.ConvertStringtoData;
 import com.EducacaoApps.InstantFormulas.Models.HistoricoHelper;
@@ -21,6 +24,10 @@ import com.EducacaoApps.InstantFormulas.ItensLibrary.IvalidDataFragment;
 import com.EducacaoApps.InstantFormulas.ItensLibrary.TudoPreenchido;
 import com.EducacaoApps.InstantFormulas.form_choose;
 import com.EducacaoApps.InstantFormulas.formulas.R;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 
 public class pitagoras extends AppCompatActivity {
     private EditText hipotenusa, co, ca;
@@ -37,16 +44,16 @@ public class pitagoras extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 
         // Referencia os itens utilizados na activity
-        hipotenusa = (EditText) findViewById(R.id.hipotenusa);
-        co = (EditText) findViewById(R.id.co);
-        ca = (EditText) findViewById(R.id.ca);
-        line1 = (TextView) findViewById(R.id.line1);
-        line2 = (TextView) findViewById(R.id.line2);
-        line3 = (TextView) findViewById(R.id.line3);
-        line4 = (TextView) findViewById(R.id.line4);
-        line5 = (TextView) findViewById(R.id.line5);
-        line6 = (TextView) findViewById(R.id.line6);
-        calcular = (Button) findViewById(R.id.calcular);
+        hipotenusa = findViewById(R.id.hipotenusa);
+        co = findViewById(R.id.co);
+        ca = findViewById(R.id.ca);
+        line1 = findViewById(R.id.line1);
+        line2 = findViewById(R.id.line2);
+        line3 = findViewById(R.id.line3);
+        line4 = findViewById(R.id.line4);
+        line5 = findViewById(R.id.line5);
+        line6 = findViewById(R.id.line6);
+        calcular = findViewById(R.id.calcular);
 
         // Define o valor de isDone como false
         isDone = false;
@@ -112,6 +119,9 @@ public class pitagoras extends AppCompatActivity {
         // Cria o botão voltar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+        // Inicializa os anúncios
+        MobileAds.initialize(this);
     }
 
     public void solve(){
@@ -306,6 +316,29 @@ public class pitagoras extends AppCompatActivity {
             }
         }
         else{
+            // Verifica se o os anúncios foram removidos
+            SharedPreferences shared = getPreferences(Context.MODE_PRIVATE);
+            boolean isAdRemoved = shared.getBoolean("isAdRemoved", false);
+
+            // Gera um número com a chance de mostrar o anúncio
+            Random random = new Random();
+            int num = random.nextInt(3);
+
+            if (!isAdRemoved && num == 0){
+                // Carrega os anúncios
+                final InterstitialAd interstitialAd = new InterstitialAd(this);
+                interstitialAd.setAdUnitId("AD_ID");
+                interstitialAd.loadAd(new AdRequest.Builder().build());
+
+                // Mostra o anúncio
+                interstitialAd.setAdListener(new AdListener(){
+                    @Override
+                    public void onAdLoaded(){
+                        interstitialAd.show();
+                    }
+                });
+            }
+
             // Define isDone como como false
             isDone = false;
 

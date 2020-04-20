@@ -14,7 +14,6 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.OrientationEventListener;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListAdapter;
@@ -77,7 +76,6 @@ public class form_choose extends AppCompatActivity {
         // Define um número aleátorio para perguntar se deseja remover os anúncios
         Random random = new Random();
         int num = random.nextInt(9);
-        Log.e("FormChoose", String.format("Random: %d", num));
 
         if (!isAdRemoved && num == 1){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -179,70 +177,6 @@ public class form_choose extends AppCompatActivity {
                 return false;
             }
         });
-
-        ExpandList.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
-            @Override
-            public void onGroupExpand(int i) {
-                /*
-                float density = getResources().getDisplayMetrics().density;
-                int height = 0;
-
-                for (int j = 0; j < listDataGroup.size();j++){
-                    if (ExpandList.isGroupExpanded(j)){
-                        try{
-                            height += (listDataChild.get(listDataGroup.get(j)).size()*164)*((int) density);
-                        }
-                        catch(Exception e){
-                            height += 0;
-                        }
-                    }
-                }
-
-                ViewGroup.LayoutParams params = ExpandList.getLayoutParams();
-                params.height = height;
-                ExpandList.setLayoutParams(params);
-                 */
-            }
-        });
-
-        ExpandList.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
-            @Override
-            public void onGroupCollapse(int i) {
-                /*
-                float density = getResources().getDisplayMetrics().density;
-                int height = 0;
-
-                for (int j = 0; j < listDataGroup.size();j++){
-                    if (ExpandList.isGroupExpanded(j)){
-                        try{
-                            height += (listDataChild.get(listDataGroup.get(j)).size()*164)*((int) density);
-                        }
-                        catch(Exception e){
-                            height += 0;
-                        }
-                    }
-                }
-
-                ViewGroup.LayoutParams params = ExpandList.getLayoutParams();
-                if (height == 0)
-                    params.height = (listDataGroup.size()*54)*((int) density);
-                else
-                    params.height = height;
-                ExpandList.setLayoutParams(params);
-                 */
-            }
-        });
-    }
-
-    private void calculateHeight(){
-        // Calcula a altura do ExpandableListView
-        float density = getResources().getDisplayMetrics().density;
-        int height = (listDataGroup.size()*54)*((int) density);
-
-        // Define o tamanho do ExpandableListView
-        ViewGroup.LayoutParams params = ExpandList.getLayoutParams();
-        params.height = height;
-        ExpandList.setLayoutParams(params);
     }
 
     void initData(){

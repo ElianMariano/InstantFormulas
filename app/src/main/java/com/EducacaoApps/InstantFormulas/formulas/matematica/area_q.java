@@ -2,10 +2,12 @@ package com.EducacaoApps.InstantFormulas.formulas.matematica;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -20,6 +22,12 @@ import com.EducacaoApps.InstantFormulas.ItensLibrary.EmptyFragment;
 import com.EducacaoApps.InstantFormulas.ItensLibrary.TudoPreenchido;
 import com.EducacaoApps.InstantFormulas.form_choose;
 import com.EducacaoApps.InstantFormulas.formulas.R;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+
+import java.util.Random;
 
 import static android.view.View.GONE;
 
@@ -111,6 +119,9 @@ public class area_q extends AppCompatActivity {
         // Cria o botão voltar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+        // Inicializa os anúncios
+        MobileAds.initialize(this);
     }
 
     @SuppressLint("DefaultLocale")
@@ -285,6 +296,29 @@ public class area_q extends AppCompatActivity {
             td.show(getFragmentManager(), "");
         }
         else if (isDone){
+            // Verifica se o os anúncios foram removidos
+            SharedPreferences shared = getPreferences(Context.MODE_PRIVATE);
+            boolean isAdRemoved = shared.getBoolean("isAdRemoved", false);
+
+            // Gera um número com a chance de mostrar o anúncio
+            Random random = new Random();
+            int num = random.nextInt(3);
+
+            if (!isAdRemoved && num == 0){
+                // Carrega os anúncios
+                final InterstitialAd interstitialAd = new InterstitialAd(this);
+                interstitialAd.setAdUnitId("AD_ID");
+                interstitialAd.loadAd(new AdRequest.Builder().build());
+
+                // Mostra o anúncio
+                interstitialAd.setAdListener(new AdListener(){
+                    @Override
+                    public void onAdLoaded(){
+                        interstitialAd.show();
+                    }
+                });
+            }
+
             // Define isDone como false
             isDone = false;
 

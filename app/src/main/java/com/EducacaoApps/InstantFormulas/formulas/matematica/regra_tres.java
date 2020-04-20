@@ -2,12 +2,15 @@ package com.EducacaoApps.InstantFormulas.formulas.matematica;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -18,8 +21,13 @@ import com.EducacaoApps.InstantFormulas.Models.HistoricoHelper;
 import com.EducacaoApps.InstantFormulas.ItensLibrary.EmptyFragment;
 import com.EducacaoApps.InstantFormulas.formulas.R;
 import com.EducacaoApps.InstantFormulas.form_choose;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 
 import java.util.List;
+import java.util.Random;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
@@ -44,14 +52,14 @@ public class regra_tres extends AppCompatActivity {
         hasIntent = false;
 
         // Declara os TextViews
-        line1 = (TextView) findViewById(R.id.line1);
-        line2 = (TextView) findViewById(R.id.line2);
-        line3 = (TextView) findViewById(R.id.line3);
+        line1 = findViewById(R.id.line1);
+        line2 = findViewById(R.id.line2);
+        line3 = findViewById(R.id.line3);
 
         // Declara o campos de textos
-        num1 = (EditText) findViewById(R.id.num1);
-        num2 = (EditText) findViewById(R.id.num2);
-        num3 = (EditText) findViewById(R.id.num3);
+        num1 = findViewById(R.id.num1);
+        num2 = findViewById(R.id.num2);
+        num3 = findViewById(R.id.num3);
 
         // Declara e cria um listener para o botão calcular
         calcular = (Button) findViewById(R.id.calcular);
@@ -88,6 +96,9 @@ public class regra_tres extends AppCompatActivity {
         // Cria o botão voltar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+        // Inicializa os anúncios
+        MobileAds.initialize(this);
     }
 
     @SuppressLint("DefaultLocale")
@@ -161,6 +172,30 @@ public class regra_tres extends AppCompatActivity {
                 }
             }
             else{
+                // Verifica se o os anúncios foram removidos
+                SharedPreferences shared = getPreferences(Context.MODE_PRIVATE);
+                boolean isAdRemoved = shared.getBoolean("isAdRemoved", false);
+
+                // Gera um número com a chance de mostrar o anúncio
+                Random random = new Random();
+                int num = random.nextInt(3);
+
+                if (!isAdRemoved && num == 0){
+                    // Carrega os anúncios
+                    final InterstitialAd interstitialAd = new InterstitialAd(this);
+                    interstitialAd.setAdUnitId("AD_ID");
+                    interstitialAd.loadAd(new AdRequest.Builder().build());
+
+                    // Mostra o anúncio
+                    interstitialAd.setAdListener(new AdListener(){
+                        @Override
+                        public void onAdLoaded(){
+                            interstitialAd.show();
+                            Log.e("RegraDeTres", "Anúncio carregado");
+                        }
+                    });
+                }
+
                 isDone = false;
 
                 //Deixa os Editexts com os textos vazios
