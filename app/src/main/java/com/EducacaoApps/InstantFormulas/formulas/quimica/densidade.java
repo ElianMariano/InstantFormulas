@@ -276,7 +276,8 @@ public class densidade extends AppCompatActivity {
         }
         else{
             // Verifica se o os anúncios foram removidos
-            SharedPreferences shared = getPreferences(Context.MODE_PRIVATE);
+            SharedPreferences shared = getSharedPreferences("isAdRemoved",
+                    Context.MODE_PRIVATE);
             boolean isAdRemoved = shared.getBoolean("isAdRemoved", false);
 
             // Gera um número com a chance de mostrar o anúncio

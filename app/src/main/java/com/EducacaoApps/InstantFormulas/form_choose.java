@@ -1,9 +1,11 @@
 package com.EducacaoApps.InstantFormulas;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,6 +29,17 @@ import com.EducacaoApps.InstantFormulas.ItensLibrary.ExpandableListViewAdapter;
 import com.EducacaoApps.InstantFormulas.formulas.R;
 
 import com.EducacaoApps.InstantFormulas.ItensLibrary.CheckItem;
+import com.android.billingclient.api.AcknowledgePurchaseParams;
+import com.android.billingclient.api.AcknowledgePurchaseResponseListener;
+import com.android.billingclient.api.BillingClient;
+import com.android.billingclient.api.BillingClientStateListener;
+import com.android.billingclient.api.BillingFlowParams;
+import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.Purchase;
+import com.android.billingclient.api.PurchasesUpdatedListener;
+import com.android.billingclient.api.SkuDetails;
+import com.android.billingclient.api.SkuDetailsParams;
+import com.android.billingclient.api.SkuDetailsResponseListener;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -37,7 +50,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-public class form_choose extends AppCompatActivity {
+public class form_choose extends AppCompatActivity implements PurchasesUpdatedListener {
     private ExpandView ExpandList;
     private ExpandableListViewAdapter expandableListViewAdapter;
     private List<String> listDataGroup;
@@ -46,6 +59,9 @@ public class form_choose extends AppCompatActivity {
     private AdView adview;
     private boolean isAdRemoved;
     private boolean isAdShown;
+    private BillingClient billingClient;
+    private BillingFlowParams flowParams;
+    private Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +93,10 @@ public class form_choose extends AppCompatActivity {
         Random random = new Random();
         int num = random.nextInt(9);
 
+        billingClient = BillingClient.newBuilder(this).setListener(this)
+                .enablePendingPurchases().build();
+        activity = this;
+
         if (!isAdRemoved && num == 1){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage(R.string.remove_ads);
@@ -89,12 +109,37 @@ public class form_choose extends AppCompatActivity {
             builder.setPositiveButton(R.string.Sim, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    // TODO Criar a lógica de compra da remoção de anúncios
-                    SharedPreferences.Editor editor = shared.edit();
-                    editor.putBoolean("isAdRemoved", true);
-                    editor.apply();
+                    billingClient.startConnection(new BillingClientStateListener() {
+                        @Override
+                        public void onBillingSetupFinished(BillingResult billingResult) {
+                            if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK){
+                                List<String> skuList = new ArrayList<>();
+                                skuList.add("remove_ads");
 
-                    isAdRemoved = true;
+                                SkuDetailsParams.Builder params = SkuDetailsParams.newBuilder();
+                                params.setSkusList(skuList).setType(BillingClient.SkuType.INAPP);
+
+                                billingClient.querySkuDetailsAsync(params.build(),
+                                        new SkuDetailsResponseListener() {
+                                    @Override
+                                    public void onSkuDetailsResponse(BillingResult billingResult,
+                                                                     List<SkuDetails> list) {
+
+                                        if (list.size() > 0){
+                                            flowParams = BillingFlowParams.newBuilder().
+                                                    setSkuDetails(list.get(0)).build();
+
+                                            billingClient.launchBillingFlow(activity, flowParams);
+                                        }
+                                    }
+                                });
+                            }
+                        }
+
+                        @Override
+                        public void onBillingServiceDisconnected() {
+                        }
+                    });
                 }
             });
 
@@ -104,6 +149,42 @@ public class form_choose extends AppCompatActivity {
 
         if (!isAdRemoved && num != 1)
             initializeAds();
+    }
+
+    private void handlePurchases(final Purchase purchase){
+        if (purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED){
+            SharedPreferences shared = getSharedPreferences("isAdRemoved",
+                    Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = shared.edit();
+            editor.putBoolean("isAdRemoved", true);
+            editor.apply();
+
+            isAdRemoved = true;
+            if (!purchase.isAcknowledged()){
+                AcknowledgePurchaseParams acknowledgeParams = AcknowledgePurchaseParams
+                        .newBuilder()
+                        .setPurchaseToken(purchase.getPurchaseToken())
+                        .build();
+                billingClient.acknowledgePurchase(acknowledgeParams, new AcknowledgePurchaseResponseListener() {
+                    @Override
+                    public void onAcknowledgePurchaseResponse(BillingResult billingResult) {
+                        Log.e("FormChoose", "Acknowledge purchase");
+                    }
+                });
+            }
+        }
+    }
+
+    @Override
+    public void onPurchasesUpdated(BillingResult billingResult, @Nullable List<Purchase> list) {
+        if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK && list != null){
+            for (Purchase purchase : list){
+                handlePurchases(purchase);
+            }
+        }
+        else if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.USER_CANCELED){
+            Log.e("FormChoose", "Cancelado pelo usuário");
+        }
     }
 
     void initializeAds(){

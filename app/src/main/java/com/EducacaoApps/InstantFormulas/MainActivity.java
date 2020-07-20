@@ -196,7 +196,8 @@ public class MainActivity extends AppCompatActivity{
         });
 
         // Verifica se o usuário removeu os Anúncios
-        final SharedPreferences shared = getPreferences(Context.MODE_PRIVATE);
+        final SharedPreferences shared = getSharedPreferences("isAdRemoved",
+                Context.MODE_PRIVATE);
         isAdRemoved = shared.getBoolean("isAdRemoved", false);
 
         if (!isAdRemoved){
